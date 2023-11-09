@@ -7,7 +7,7 @@ const productSchema = mongoose.Schema({
     discountPrice:{type:Number,required:false},
     productId:{type:Number,required:true},
     picture:{type:String,required:true},
-
+    
 },
     {timestamp:true}
 )
