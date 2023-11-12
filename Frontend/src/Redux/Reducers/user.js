@@ -3,6 +3,10 @@ import {
   CREATE_USER_REQUEST,
   CREATE_USER_RESET,
   CREATE_USER_SUCCESS,
+  DELETE_USER_ERROR,
+  DELETE_USER_REQUEST,
+  DELETE_USER_RESET,
+  DELETE_USER_SUCCESS,
   GET_USERS_ERROR,
   GET_USERS_REQUEST,
   GET_USERS_RESET,
@@ -10,6 +14,10 @@ import {
   GET_USER_ERROR,
   GET_USER_REQUEST,
   GET_USER_RESET,
+  LOGIN_USER_ERROR,
+  LOGIN_USER_REQUEST,
+  LOGIN_USER_RESET,
+  LOGIN_USER_SUCCESS,
   UPDATE_USER_ERROR,
   UPDATE_USER_REQUEST,
   UPDATE_USER_RESET,
@@ -52,8 +60,49 @@ export const createUserReducer = (
   }
 };
 
+const storedUserInfo = localStorage.getItem("userInfo")
+  ? JSON.parse(localStorage.getItem("userInfo"))
+  : null;
+export const loginUserReducer = (
+  state = { user: storedUserInfo, loading: false, success: false, error: null },
+  action
+) => {
+  switch (action.type) {
+    case LOGIN_USER_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+    case LOGIN_USER_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        success: true,
+        user: action.payload,
+      };
+
+    case LOGIN_USER_RESET:
+      return {
+        loading: false,
+        user: null,
+        success: false,
+        error: null,
+      };
+
+    case LOGIN_USER_ERROR:
+      return {
+        ...state,
+        loading: false,
+        success: false,
+        error: action.payload,
+      };
+
+    default:
+      return state;
+  }
+};
 export const getUsersReducer = (
-  state = { users: [], loading: false, success: false, error: nul },
+  state = { users: [], loading: false, success: false, error: null },
   action
 ) => {
   switch (action.type) {
@@ -89,7 +138,7 @@ export const getUsersReducer = (
 };
 
 export const getUserReducer = (
-  state = { user: null, loading: false, success: true, error: null },
+  state = { user: null, loading: false, success: false, error: null },
   action
 ) => {
   switch (action.type) {
@@ -153,6 +202,44 @@ export const updateUserReducer = (
         error: null,
       };
     case UPDATE_USER_ERROR:
+      return {
+        ...state,
+        loading: false,
+        success: false,
+        error: action.payload,
+      };
+    default:
+      return state;
+  }
+};
+
+export const deleteUserReducer = (
+  state = { user: null, loading: false, success: false, error: null },
+  action
+) => {
+  switch (action.type) {
+    case DELETE_USER_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+
+    case DELETE_USER_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        success: true,
+        user: action.payload,
+      };
+
+    case DELETE_USER_RESET:
+      return {
+        loading: false,
+        user: null,
+        success: false,
+        error: null,
+      };
+    case DELETE_USER_ERROR:
       return {
         ...state,
         loading: false,

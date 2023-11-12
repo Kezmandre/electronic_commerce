@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { createUserReducer, getUserReducer, getUsersReducer } from "./Reducers";
+import { createUserReducer, deleteUserReducer, getUserReducer, getUsersReducer, loginUserReducer, updateUserReducer } from "./Reducers";
 
 
 
@@ -7,5 +7,8 @@ import { createUserReducer, getUserReducer, getUsersReducer } from "./Reducers";
 export const reducers = combineReducers({
     createUser:createUserReducer,
     getUsers : getUsersReducer,
-    getUser:getUserReducer
+    getUser:getUserReducer,
+    updateUser:updateUserReducer,
+    deleteUser:deleteUserReducer,
+    loginUser:loginUserReducer
 })

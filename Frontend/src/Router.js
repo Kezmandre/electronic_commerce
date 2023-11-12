@@ -6,7 +6,7 @@ import Layout from './Components/Layout/Layout'
 import ContactPage from './Pages/ContactPage'
 import SignUp from './Pages/SignUp'
 import LoginPage from './Pages/LoginPage'
-
+import { ProtectedRoute } from './Components/ProtectedRoute/ProtectedRoute'
 const Router = () => {
   return (
     <Routes>
@@ -16,9 +16,11 @@ const Router = () => {
         </Layout>
         }/>
         <Route path='/about' element={
+          <ProtectedRoute>
           <Layout>
         <AboutPage/>
         </Layout>
+        </ProtectedRoute>
         }/>
         <Route path='/contact' element={ <Layout><ContactPage/></Layout> } />
         <Route path='/signUp' element={ <Layout><SignUp/></Layout> } />

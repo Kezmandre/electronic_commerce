@@ -4,11 +4,12 @@ import React from 'react'
 import Advert from "../Components/Advert/Advert";
 import Navigation from "../Components/Navigation/Navigation";
 import Footer from "../Components/Footer/Footer";
+import Home from "../Components/Home/Home";
 
 const HomePage = () => {
   return (
     <div>
-      Home
+      <Home />
     </div>
   )
 }

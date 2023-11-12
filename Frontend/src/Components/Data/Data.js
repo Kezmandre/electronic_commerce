@@ -1,3 +1,10 @@
+import Founder from "../Assets/Images/founder.png"
+import phone from "../Assets/Images/Iphone.png"
+import speaker from "../Assets/Images/speakers.png"
+import Jbl from "../Assets/Images/JBL.png"
+import Ps5 from "../Assets/Images/ps5.png"
+import Perfume from "../Assets/Images/perfume.png"
+import Woman from "../Assets/Images/woman.png"
 export const navItems = [
   {
     id: 1,
@@ -5,7 +12,7 @@ export const navItems = [
     path: "/",
   },
   {
-    id: 2,
+    id: 2,  
     name: "Contact",
     path: "/contact",
   },
@@ -54,7 +61,7 @@ export const aboutData = [
 export const profileData = [
   {
     id: 1,
-    img: "https://res.cloudinary.com/di9r3toow/image/upload/v1698664657/f91fd46b-932b-49db-aa16-0335f4b88a9b_zf9kis.png",
+    img: Founder,
     name: "Andrew Patterson",
     position: "Founder & Chairman",
   },
@@ -98,4 +105,14 @@ export const infoData=[
     },
 
     
+]
+
+
+export const slides =[
+  phone,
+  speaker,
+  Jbl,
+  Ps5,
+  Perfume,
+  Woman
 ]
