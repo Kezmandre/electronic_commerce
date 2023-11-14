@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
 
-const cartItemSchema = mongoose.Schema({
-  product: { type: mongoose.Schema.ObjectId, required: true },
-  quantity: { type: Number, required: true, default: 1 },
-});
+// const cartItemSchema = mongoose.Schema({
+//   product: { type: mongoose.Schema.ObjectId, required: true },
+//   quantity: { type: Number, required: true, default: 1 },
+// });
 
 const cartSchema = mongoose.Schema({
   user: { type: mongoose.Schema.ObjectId, required: true },

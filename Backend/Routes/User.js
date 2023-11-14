@@ -1,6 +1,6 @@
 import express from "express";
 import validateMiddle from "../Middleware/Validation.js";
-import { userSchema } from "../Controller/UserSchema.js";
+import { userSchema } from "../Controller/Users/UserSchema.js";
 import {
   createUser,
   deleteUser,
@@ -8,7 +8,7 @@ import {
   getUsers,
   updateUser,
   userLogin,
-} from "../Controller/User.js";
+} from "../Controller/Users/User.js";
 import { Authorized, userVerification } from "../Middleware/Auth.js";
 
 const router = express.Router();

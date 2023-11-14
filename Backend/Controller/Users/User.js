@@ -1,13 +1,13 @@
 import httpStatus from "http-status";
-import {serialize} from "../Utility/serialize.js"
-import {uniqueCode} from "../Utility/uniqueCode.js"
+import {serialize} from "../../Utility/serialize.js"
+import {uniqueCode} from "../../Utility/uniqueCode.js"
 import bcryptjs from "bcryptjs"
-import {generateToken} from "../Utility/jwt-token.js"
-import userModel from "../Model/User.js"
+import {generateToken} from "../../Utility/jwt-token.js"
+import userModel from "../../Model/User.js"
 
 
 export const createUser =async(req,res)=>{
-    const {name , email, password} = req.body
+    const {name , email, password,} = req.body
 
     try {
 
@@ -116,7 +116,7 @@ export const getUser =async(req,res)=>{
 
 export const updateUser =async(req,res)=>{
     const{id}=req.params;
-    const data= req.body;
+    const {password,name}= req.body;
 
     try {
         const user = await userModel.findById({_id:id})
@@ -127,10 +127,10 @@ export const updateUser =async(req,res)=>{
         })
         return
        }
-       const updatedUser = await userModel.findOneAndUpdate({_id:id},data,{new:true})
+       const updatedUser = await userModel.findOneAndUpdate({_id:id},{password,name},{new:true})
        res.status(httpStatus.OK).json({
         status:"success",
-        payload:updatedUser
+        payload:serialize(updatedUser)
        })
     } catch (error) {
         res.status(httpStatus.BAD_REQUEST).json({
