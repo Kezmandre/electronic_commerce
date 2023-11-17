@@ -24,7 +24,7 @@ const Layout = ({children}) => {
 
         <Advert/>
         <Navigation/>
-        <main className='min-h-[90vh]'>{children}</main>
+        <main>{children}</main>
         <Footer/>
     </div>
   )

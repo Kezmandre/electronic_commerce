@@ -5,6 +5,17 @@ import Jbl from "../Assets/Images/JBL.png"
 import Ps5 from "../Assets/Images/ps5.png"
 import Perfume from "../Assets/Images/perfume.png"
 import Woman from "../Assets/Images/woman.png"
+import Phone from "../Assets/Images/catPhone.png"
+import Computer from "../Assets/Images/catComputer.png"
+import Watch from "../Assets/Images/catWatch.png"
+import Camera from "../Assets/Images/catCamera.png"
+import Headphone from "../Assets/Images/catHeadphone.png"
+import Gaming from "../Assets/Images/catGaming.png"
+
+
+
+
+
 export const navItems = [
   {
     id: 1,
@@ -115,4 +126,39 @@ export const slides =[
   Ps5,
   Perfume,
   Woman
+]
+
+export const category =[
+  {
+    id:1,
+    img:Phone,
+    title:"Phones"
+  },
+  {
+    id:2,
+    img:Computer,
+    title:"Computer"
+  },
+  {
+    id:3,
+    img:Watch,
+    title:"SmartWatch"
+  },
+
+  {
+    id:4,
+    img:Camera,
+    title:"Camera"
+  },
+  {
+    id:5,
+    img:Headphone,
+    title:"Headphones"
+  },
+
+  {
+    id:6,
+    img:Gaming,
+    title:"Gaming"
+  },
 ]

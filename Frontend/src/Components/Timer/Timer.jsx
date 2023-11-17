@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import Bar from "../Bar/Bar";
 
 const Timer = () => {
   const [days, setDays] = useState("00");
@@ -42,7 +43,8 @@ const Timer = () => {
   return (
     <div>
       <div className="flex justify-start mb-4 items-center gap-2">
-        <div className="w-[20px] rounded-md  h-[50px] bg-[#db4444]"></div>
+        {/* <div className="w-[20px] rounded-md  h-[50px] bg-[#db4444]"></div> */}
+        <Bar />
         <p className="text-[#db4444] font-poppins font-semibold">Today's</p>
       </div>
       <div className="flex justify-start gap-12 items-center">

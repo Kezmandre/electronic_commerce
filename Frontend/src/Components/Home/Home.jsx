@@ -4,6 +4,12 @@ import {AiOutlineApple} from "react-icons/ai"
 import {BsArrowRightShort} from "react-icons/bs"
 import { slides } from '../Data/Data'
 import Timer from '../Timer/Timer'
+import Product from '../Product/Product'
+import Category from '../Category/Category'
+import Selling from '../Category/Selling'
+import NewProduct from '../Category/NewProduct'
+import Collections from '../Category/Collections'
+import Arrivals from '../Category/Arrivals'
 
 const Home = () => {
 
@@ -18,7 +24,7 @@ const Home = () => {
   }
   return (
     <div className='m-0 p-0 border-box'>
-      <div className='w-5/6 mx-auto my-4 cursor-pointer gap-6 flex justify-between'>
+      <div className='w-5/6 mx-auto mt-4 mb-14 cursor-pointer gap-6 flex justify-between'>
         <div className='w-[200px] h-[280px] font-poppins border-r-2'>
           <div className='w-5/6 mx-auto'>
             <div className='flex items-center justify-between mb-2'>
@@ -67,8 +73,28 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className='w-[80%] mx-auto mt-12'>
+      <div className='w-[80%] mx-auto'>
+      <div className='mb-10'>
       <Timer/>
+      </div>
+      <div className='my-4'>
+        <Product />
+      </div>
+      <div className=' mt-4'>
+        <Category />
+      </div>
+      <div className=' my-10'>
+        <Selling />
+      </div>
+      <div className=' mb-8'>
+        <NewProduct/>
+      </div>
+      <div className='mb-8'>
+        <Collections/>
+      </div>
+      <div className='mb-4'>
+        <Arrivals/>
+      </div>
       </div>
     </div>
   )
