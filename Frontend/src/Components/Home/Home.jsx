@@ -10,6 +10,7 @@ import Selling from '../Category/Selling'
 import NewProduct from '../Category/NewProduct'
 import Collections from '../Category/Collections'
 import Arrivals from '../Category/Arrivals'
+import Services from '../About/Services'
 
 const Home = () => {
 
@@ -92,8 +93,11 @@ const Home = () => {
       <div className='mb-8'>
         <Collections/>
       </div>
-      <div className='mb-4'>
+      <div className='mb-6'>
         <Arrivals/>
+      </div>
+      <div className='mb-6'>
+        <Services/>
       </div>
       </div>
     </div>

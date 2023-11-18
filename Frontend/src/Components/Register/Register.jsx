@@ -1,9 +1,54 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import signUp_img from "../Assets/Images/signUp.png";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import {toast} from "react-toastify"
+import { Link, useNavigate } from "react-router-dom";
+import {useSelector,useDispatch} from "react-redux"
+import { createUserAction } from "../../Redux/actions/user";
+import { CREATE_USER_RESET } from "../../Redux/constants";
 
 const Register = () => {
+  const dispatch = useDispatch()
+  const navigate= useNavigate()
+  const {createUser}= useSelector((state)=>state)
+  const {user,error,success}=createUser
+
+
+  const initialValue = {
+    name: "",
+    email: "",
+    password: "",
+  }
+
+  const [input, setInput] = useState(initialValue)
+
+  const changeHandler=(e)=>{
+    const {name, value}= e.target
+    setInput((prev)=>({
+      ...prev,
+      [name]:value
+      }))
+  }
+
+  async function createUserHandler(){
+    dispatch(createUserAction({name:input.name,email:input.email,password:input.password}))
+  }
+
+  useEffect(()=>{
+    if(success){
+      toast.success("Registration Successful")
+      setTimeout(()=>{
+        navigate("/login")
+      },3000)
+    }
+
+    if(error){
+      toast.error(`${error}`)
+      setTimeout(()=>{
+        dispatch({type:CREATE_USER_RESET})
+      })
+    }
+  },[success,error])
   return (
     <div className="m-0 p-0 border-box">
       <div className="w-10/12 h-screen mx-12  flex justify-center item-center">
@@ -21,8 +66,9 @@ const Register = () => {
             <div className=" w-full mb-4 ">
               <input
                 type="text"
-                name=""
+                name="name"
                 placeholder="Name"
+                onChange={changeHandler}
                 id=""
                 className="w-full p-2 border-b-2 border-[grey] outline-none font-poppins"
               />
@@ -30,22 +76,24 @@ const Register = () => {
             <div className="  w-full mb-4">
               <input
                 type="email"
-                name=""
-                placeholder="Email or Phone"
+                name="email"
+                placeholder="Email"
                 id=""
+                onChange={changeHandler}
                 className="w-full p-2 border-b-2 border-[grey] outline-none font-poppins"
               />
             </div>
             <div className="w-full mb-4">
               <input
                 type="password"
-                name=""
+                name="password"
                 placeholder="Password"
                 id=""
+                onChange={changeHandler}
                 className="w-full p-2 border-b-2 border-[grey] outline-none font-poppins"
               />
             </div>
-            <button className="w-full bg-[#db4444] hover:bg-red-300  rounded-md mb-2 p-2">
+            <button onClick={createUserHandler} className="w-full bg-[#db4444] hover:bg-red-300  rounded-md mb-2 p-2">
               <p className="text-center font-poppins text-white">
                 Create an Account
               </p>

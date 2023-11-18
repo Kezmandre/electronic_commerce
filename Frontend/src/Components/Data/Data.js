@@ -1,4 +1,6 @@
 import Founder from "../Assets/Images/founder.png"
+import Emma from "../Assets/Images/Emma.png"
+import Jude from "../Assets/Images/Jude.png"
 import phone from "../Assets/Images/Iphone.png"
 import speaker from "../Assets/Images/speakers.png"
 import Jbl from "../Assets/Images/JBL.png"
@@ -79,14 +81,14 @@ export const profileData = [
 
   {
     id: 2,
-    img: "https://res.cloudinary.com/di9r3toow/image/upload/v1698664681/c3cc41f0-cebf-4c29-be22-b9836311a784_xsxkq3.png",
+    img: Emma,
     name: "Camille Danbury",
     position: "Managing Director",
   },
 
   {
     id: 3,
-    img: "https://res.cloudinary.com/di9r3toow/image/upload/v1698664753/65d68129-18b8-4ba0-9c8e-95370c21b465_deg5yn.png",
+    img: Jude,
     name: "Jude Moore",
     position: "Product Designer",
   },
