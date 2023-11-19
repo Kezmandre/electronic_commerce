@@ -78,7 +78,7 @@ const Home = () => {
       <div className='mb-10'>
       <Timer/>
       </div>
-      <div className='my-4'>
+      <div className='my-4 w-full'>
         <Product />
       </div>
       <div className=' mt-4'>

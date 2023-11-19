@@ -7,6 +7,7 @@ import ContactPage from './Pages/ContactPage'
 import SignUp from './Pages/SignUp'
 import LoginPage from './Pages/LoginPage'
 import { ProtectedRoute } from './Components/ProtectedRoute/ProtectedRoute'
+import Modal from './Components/Modal/Modal'
 const Router = () => {
   return (
     <Routes>
@@ -25,6 +26,7 @@ const Router = () => {
         <Route path='/contact' element={ <Layout><ContactPage/></Layout> } />
         <Route path='/signUp' element={ <Layout><SignUp/></Layout> } />
         <Route path='/login' element={ <Layout><LoginPage/></Layout> } />
+        <Route path='/product/:productId' element={<Modal/>} />
     </Routes>
   )
 }

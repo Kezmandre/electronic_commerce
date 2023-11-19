@@ -33,6 +33,7 @@ const Register = () => {
   async function createUserHandler(){
     dispatch(createUserAction({name:input.name,email:input.email,password:input.password}))
   }
+  
 
   useEffect(()=>{
     if(success){

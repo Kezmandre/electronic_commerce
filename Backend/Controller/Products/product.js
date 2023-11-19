@@ -2,7 +2,7 @@ import httpStatus from "http-status";
 import productModel from "../../Model/Product.js";
 
 export const createProduct = async (req, res) => {
-  const { title, price, description, discountPrice, imageUrl } = req.body;
+  const { title, price, description, discountedPrice, discountedPercentage, imageUrl } = req.body;
   try {
     const titleExist = await productModel.findOne({ title: title });
     if (titleExist) {
@@ -16,7 +16,8 @@ export const createProduct = async (req, res) => {
       title,
       price,
       description,
-      discountPrice,
+      discountedPrice,
+      discountedPercentage,
       imageUrl,
     });
     res.status(httpStatus.OK).json({
@@ -72,7 +73,7 @@ export const getProduct = async (req, res) => {
 
 export const updateProduct = async (req, res) => {
   const { id } = req.params;
-  const { title, price, discountPrice, description, imageUrl } = req.body;
+  const { title, price, discountPrice, description, imageUrl,discountedPercentage,discountedPrice } = req.body;
 
   try {
     const product = await productModel.findById({ _id: id });
@@ -87,7 +88,7 @@ export const updateProduct = async (req, res) => {
 
     const updatedProduct = await productModel.findOneAndUpdate(
       { _id: id },
-      { title, price, discountPrice, description, imageUrl },
+      { title, price, discountPrice, description, imageUrl,discountedPercentage,discountedPrice },
       { new: true }
     );
     res.status(httpStatus.OK).json({

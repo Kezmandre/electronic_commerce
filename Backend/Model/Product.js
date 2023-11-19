@@ -4,7 +4,8 @@ export const productSchema = mongoose.Schema({
     title:{type:String, required:true},
     description:{type:String,required:true},
     price:{type:Number,required:true},
-    discountPrice:{type:Number},
+    discountedPrice:{type:Number, required:true},
+    discountedPercentage:{type:Number, required:true},
     imageUrl:{type:String,required:true},
     
 },
