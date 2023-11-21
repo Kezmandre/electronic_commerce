@@ -7,6 +7,9 @@ import {
   GET_PRODUCT_REQUEST,
   GET_PRODUCT_SUCCESS,
 } from "../constants";
+import { useParams } from "react-router-dom";
+
+const {productId}= useParams
 
 const url = "http://localhost:5000";
 
@@ -23,7 +26,7 @@ export const getProductActions = () => async(dispatch, state) => {
     });
 
     const { data } = await axios.get(`${url}/product`, config);
-
+        
     dispatch({
       type: GET_PRODUCTS_SUCCESS,
       payload: data.payload,
@@ -44,20 +47,20 @@ export const getProductActions = () => async(dispatch, state) => {
 };
 
 
-export const singleProductActions=(productId)=>async(dispatch, state)=>{
+export const singleProductActions=({productId})=>async(dispatch, state)=>{
+    console.log(productId)
     const config ={
         header:{
             "Content-Type":"application/json"
         }
     }
-
     try {
         dispatch({
             type:GET_PRODUCT_REQUEST
         })
 
         const {data}= await axios.get(`${url}/product/${productId}`,config)
-
+        console.log(data, "dataaa")
         dispatch({
             type:GET_PRODUCT_SUCCESS,
             payload:data.payload
