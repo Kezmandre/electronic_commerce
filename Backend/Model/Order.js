@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const orderSchema = mongoose.Schema(
+const orderSchema = new mongoose.Schema(
   {
     userId: { type: mongoose.Schema.ObjectId }, // User ID
     items: [
@@ -19,6 +19,6 @@ const orderSchema = mongoose.Schema(
   { timestamp: true }
 );
 
-const orderModel = mongoose.model("order", orderSchema);
+const Order = mongoose.model("Order", orderSchema);
 
-export default orderModel;
+export default Order;

@@ -10,6 +10,7 @@ import { dbConnect } from "./Config/db.js";
 
 import userRouter from "./Routes/User.js"
 import productRouter from "./Routes/Product.js";
+import cartRouter from "./Routes/cart.js";
 
 const app = express();
 
@@ -20,6 +21,7 @@ app.use(express.json())
 
 app.use("/users",userRouter)
 app.use("/product",productRouter)
+app.use("/cart",cartRouter)
 app.get("/", (req, res) => {
   res.status(httpStatus.OK).json({
     status: "success",

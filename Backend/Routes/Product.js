@@ -1,7 +1,7 @@
 import express from "express";
 import validateMiddle from "../Middleware/Validation.js";
 import { Authorized, userVerification } from "../Middleware/Auth.js";
-import { productSchema } from "../Model/Product.js";
+import { productValSchema } from "../Controller/Products/productSchema.js";
 import {
   allProducts,
   createProduct,
@@ -10,12 +10,16 @@ import {
   updateProduct,
 } from "../Controller/Products/product.js";
 
-
 const productRouter = express.Router();
 
 productRouter
   .route("/")
-  .post(userVerification, Authorized(["admin"]), createProduct)
+  .post(
+    validateMiddle(productValSchema),
+    userVerification,
+    Authorized(["admin"]),
+    createProduct
+  )
   .get(allProducts);
 
 productRouter

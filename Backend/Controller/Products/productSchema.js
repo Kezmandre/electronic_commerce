@@ -1,11 +1,10 @@
-import joi, { number } from "joi";
+import Joi from "joi";
 
-export const productSchema = joi.object({
-    title: joi.string().required(),
-    price:joi.number().required(),
-    discountedPrice:joi.number().required,
-    discountedPercentage:joi.number().required(),
-    description: joi.string().required(),
-    imageUrl:joi.string().required()
-
-})
+export const productValSchema = Joi.object({
+  title: Joi.string().required(),
+  price: Joi.number().required(),
+  discountedPrice: Joi.number().required(),
+  discountedPercentage: Joi.number().required(),
+  description: Joi.string().required(),
+  imageUrl: Joi.string().required(),
+});
