@@ -3,6 +3,13 @@ import mongoose from "mongoose";
 const orderSchema = new mongoose.Schema(
   {
     userId: { type: mongoose.Schema.ObjectId }, // User ID
+    address:{
+      type:String,required:true
+    },
+    phoneNumber:{
+      type:Number,required: true
+    },
+    orderStatus:{type:String, enum:["processing","dispatch","delivered"],default:"processing"},
     items: [
       {
         product: {
