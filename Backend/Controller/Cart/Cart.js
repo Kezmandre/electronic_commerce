@@ -14,7 +14,7 @@ export const addToCart = async (req, res) => {
     const carts = await cartModel.find({}).populate("product");
     console.log(carts, "carts");
     const isPresent = carts.findIndex(
-      (item) => item.product._id == data.productId && item.userId === userId
+      (item) => item.product._id == data.productId || item.userId === userId
     );
     if (isPresent !== -1) {
       res.status(httpStatus.BAD_REQUEST).json({

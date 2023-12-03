@@ -23,7 +23,7 @@ const orderSchema = new mongoose.Schema(
     totalPrice: { type: Number, required: true, default: 0 },
     orderDate: { type: Date, default: Date.now },
   },
-  { timestamp: true }
+  { timestamps: true }
 );
 
 const Order = mongoose.model("Order", orderSchema);

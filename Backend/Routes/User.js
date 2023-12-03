@@ -16,9 +16,9 @@ const router = express.Router();
 router.route("/").post(validateMiddle(userSchema), createUser).get(getUsers);
 router
   .route("/:id")
-  .get(userVerification, Authorized(["default","admin"]), getUser)
+  .get(userVerification, Authorized(["default", "admin"]), getUser)
   .patch(userVerification, Authorized(["default", "admin"]), updateUser)
-  .delete(userVerification,Authorized(["default","admin"]), deleteUser);
+  .delete(userVerification, Authorized(["default", "admin"]), deleteUser);
 router.route("/login").post(userLogin);
 
 export default router;
