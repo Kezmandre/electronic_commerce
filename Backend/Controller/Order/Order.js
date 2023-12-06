@@ -72,9 +72,9 @@ export const getOrder = async (req, res) => {
     if (!Array.isArray(order.items)) {
       return res
         .status(httpStatus.INTERNAL_SERVER_ERROR)
-        .json({ error: "Invalid order structure" });
+        .json({ error: "Order must be an Array" });
     }
-    const totalItems = await order.items.reduce((total, item) => {
+    const totalItems = order.items.reduce((total, item) => {
       return total + item.quantity * (item.product.price || 0);
     }, 0);
     order.totalPrice = totalItems;

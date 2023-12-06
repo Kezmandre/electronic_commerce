@@ -7,24 +7,43 @@ import {
   getProductActions,
   singleProductActions,
 } from "../../Redux/actions/product";
-// import { openModal, closeModal } from "../../Redux/actions/modal";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Modal from "../Modal/Modal";
-import { useParams } from "react-router-dom";
-import { openModalAction } from "../../Redux/actions/modal";
 
-const Product = () => {  
+import { openModalAction } from "../../Redux/actions/modal";
+import { addToCartActions } from "../../Redux/actions/cart";
+import { toast } from "react-toastify";
+
+const Product = () => {
   const dispatch = useDispatch();
-  const { getProducts, modal } = useSelector((state) => state);
+  const { getProducts, modal, addToCart } = useSelector((state) => state);
   const { isModalOpen } = modal;
+  const { cart, success: cartSuccess, error: cartError } = addToCart;
   const { product, success, error } = getProducts;
 
   // get single product
   const openModalHandler = (productId) => {
-      dispatch(singleProductActions({ productId: productId }));
-      dispatch(openModalAction());
+    dispatch(singleProductActions({ productId: productId }));
+    dispatch(openModalAction());
   };
 
+  const addToCartHandler = ({productId}) => {
+    dispatch(addToCartActions(productId));
+    if (cartSuccess) {
+      toast.success("Product added to cart");
+    }
+
+    const cartExist = cart?.find((product) => product._id === _id);
+    if (cartExist) {
+      toast.warn("product already in cart");
+    }
+
+    if (cartError) {
+      toast.error(`${cartError}`);
+    }
+  };
+
+  useEffect(() => {}, [cartSuccess, cartError]);
   // get all products
   useEffect(() => {
     dispatch(getProductActions());
@@ -32,7 +51,7 @@ const Product = () => {
   return (
     <div className="flex flex-wrap gap-8 justify-start items-center mb-20">
       {isModalOpen && <Modal />}
-      {product?.slice(0,4).map((item) => {
+      {product?.slice(0, 4).map((item) => {
         return (
           <div key={item.id} className="w-[225px] h-[250px] mb-14 ">
             <div className=" group w-[225px] h-[250px] bg-[#f5f5f5]">
@@ -44,7 +63,10 @@ const Product = () => {
                   <div className="w-[20px] h-[20px] rounded-full bg-white">
                     <CiHeart className="w-full h-full cursor-pointer" />
                   </div>
-                  <div onClick={() => openModalHandler(item._id)} className="w-[20px] h-[20px] cursor-pointer rounded-full bg-white">
+                  <div
+                    onClick={() => openModalHandler(item._id)}
+                    className="w-[20px] h-[20px] cursor-pointer rounded-full bg-white"
+                  >
                     <BsEye className="w-full h-full cursor-pointer" />
                   </div>
                 </div>
@@ -57,12 +79,20 @@ const Product = () => {
                   onClick={() => openModalHandler(item._id)}
                 />
               </div>
-              <div className="w-full hidden group-hover:block p-2 font-poppins text-white text-center cursor-pointer bg-black">
+              <div
+                onClick={()=>addToCartHandler(item._id)}
+                className="w-full hidden group-hover:block p-2 font-poppins text-white text-center cursor-pointer bg-black"
+              >
                 Add to cart
               </div>
             </div>
             <div className="mt-2 font-poppins">
-              <p onClick={()=>openModalHandler(item._id)} className=" font-semibold cursor-pointer text-base">{item.title}</p>
+              <p
+                onClick={() => openModalHandler(item._id)}
+                className=" font-semibold cursor-pointer text-base"
+              >
+                {item.title}
+              </p>
               <span className="flex justify-start items-center gap-2 ">
                 <p className="text-[#db4444] text-sm">${item.price}</p>
                 <p className="text-[grey] line-through text-sm">
