@@ -42,7 +42,9 @@ const Navigation = () => {
             <BiSearch className="text-2xl " />
           </div>
           <AiOutlineHeart className="text-2xl cursor-pointer mr-4" />
-          <BsCart3 className="text-2xl cursor-pointer mr-12" />
+          <Link to="/cart">
+            <BsCart3 className="text-2xl cursor-pointer mr-12" />
+          </Link>
         </div>
         <div className="absolute top-[18px] right-4 md:hidden lg:hidden cursor-pointer">
           <HiMenuAlt3 className="text-3xl" onClick={showSidebar} />

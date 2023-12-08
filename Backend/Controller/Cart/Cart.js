@@ -3,7 +3,8 @@ import cartModel from "../../Model/Cart.js";
 import { deleteProduct } from "../Products/product.js";
 
 export const addToCart = async (req, res) => {
-  const userId = req.user.id;
+  const userId = req.user._id;
+  console.log(req.user, "req");
   const data = req.body;
 
   console.log(data, "data");
@@ -14,7 +15,9 @@ export const addToCart = async (req, res) => {
     const carts = await cartModel.find({}).populate("product");
     console.log(carts, "carts");
     const isPresent = carts.findIndex(
-      (item) => item.product._id == data.productId || item.userId === userId
+      (item) =>
+        (item.product && item.product._id == data.productId) ||
+        item.userId === userId
     );
     if (isPresent !== -1) {
       res.status(httpStatus.BAD_REQUEST).json({
@@ -33,7 +36,11 @@ export const addToCart = async (req, res) => {
       payload: cartItem,
     });
   } catch (error) {
-    console.log("add to cart error", error);
+    console.log(error, "err");
+    res.status(httpStatus.BAD_REQUEST).json({
+      status: "error",
+      payload: error.message,
+    });
   }
 };
 

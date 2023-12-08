@@ -13,6 +13,10 @@ import Modal from "../Modal/Modal";
 import { openModalAction } from "../../Redux/actions/modal";
 import { addToCartActions } from "../../Redux/actions/cart";
 import { toast } from "react-toastify";
+import {
+  CREATE_CARTS_RESET,
+
+} from "../../Redux/constants/cartsConstant";
 
 const Product = () => {
   const dispatch = useDispatch();
@@ -21,29 +25,35 @@ const Product = () => {
   const { cart, success: cartSuccess, error: cartError } = addToCart;
   const { product, success, error } = getProducts;
 
+
   // get single product
   const openModalHandler = (productId) => {
     dispatch(singleProductActions({ productId: productId }));
     dispatch(openModalAction());
   };
 
-  const addToCartHandler = ({productId}) => {
+  const addToCartHandler = (productId) => {
+    console.log(productId, "prodId");
     dispatch(addToCartActions(productId));
+
+    // const cartExist = cart?.find((product) => product._id === _id);
+    // if (cartExist) {
+    //   toast.warn("product already in cart");
+    // }
+  };
+
+  useEffect(() => {
     if (cartSuccess) {
       toast.success("Product added to cart");
     }
 
-    const cartExist = cart?.find((product) => product._id === _id);
-    if (cartExist) {
-      toast.warn("product already in cart");
-    }
-
     if (cartError) {
-      toast.error(`${cartError}`);
+      toast.warn(`${cartError}`);
+      setTimeout(() => {
+        dispatch({ type: CREATE_CARTS_RESET });
+      }, 3000);
     }
-  };
-
-  useEffect(() => {}, [cartSuccess, cartError]);
+  }, [cartSuccess, cartError]);
   // get all products
   useEffect(() => {
     dispatch(getProductActions());
@@ -53,7 +63,7 @@ const Product = () => {
       {isModalOpen && <Modal />}
       {product?.slice(0, 4).map((item) => {
         return (
-          <div key={item.id} className="w-[225px] h-[250px] mb-14 ">
+          <div key={item._id} className="w-[225px] h-[250px] mb-14 ">
             <div className=" group w-[225px] h-[250px] bg-[#f5f5f5]">
               <div className="flex justify-between items-center">
                 <div className="m-2">
@@ -80,7 +90,7 @@ const Product = () => {
                 />
               </div>
               <div
-                onClick={()=>addToCartHandler(item._id)}
+                onClick={() => addToCartHandler(item._id)}
                 className="w-full hidden group-hover:block p-2 font-poppins text-white text-center cursor-pointer bg-black"
               >
                 Add to cart

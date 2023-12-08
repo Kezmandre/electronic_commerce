@@ -61,7 +61,7 @@ export const addToCartReducers = (
 };
 
 export const getCartsReducers = (
-  state = { cart: [], loading: false, success: false, error: null },
+  state = { carts: [], loading: false, success: false, error: null },
   action
 ) => {
   switch (action.type) {
@@ -75,11 +75,11 @@ export const getCartsReducers = (
         ...state,
         loading: false,
         success: true,
-        cart: action.payload,
+        carts: action.payload,
       };
     case GET_CARTS_RESET:
       return {
-        cart: null,
+        carts: null,
         loading: false,
         success: false,
         error: null,

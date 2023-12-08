@@ -26,7 +26,6 @@ export const getProductActions = () => async(dispatch, state) => {
     });
 
     const { data } = await axios.get(`${url}/product`, config);
-        
     dispatch({
       type: GET_PRODUCTS_SUCCESS,
       payload: data.payload,
