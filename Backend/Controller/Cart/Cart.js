@@ -16,7 +16,7 @@ export const addToCart = async (req, res) => {
     console.log(carts, "carts");
     const isPresent = carts.findIndex(
       (item) =>
-        (item.product && item.product._id == data.productId) ||
+        (item.product && item.product._id == data.productId) &&
         item.userId === userId
     );
     if (isPresent !== -1) {

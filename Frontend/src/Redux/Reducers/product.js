@@ -15,10 +15,11 @@ import {
   GET_PRODUCT_REQUEST,
   GET_PRODUCT_RESET,
   GET_PRODUCT_SUCCESS,
+  UPDATE_PRODUCT_ERROR,
   UPDATE_PRODUCT_REQUEST,
   UPDATE_PRODUCT_RESET,
   UPDATE_PRODUCT_SUCCESS,
-  UPDATE_USER_ERROR,
+
 } from "../constants";
 
 export const createProductReducer = (
@@ -164,7 +165,7 @@ export const updateProductReducer = (
         error: null,
       };
 
-    case UPDATE_USER_ERROR:
+    case UPDATE_PRODUCT_ERROR:
       return {
         ...state,
         loading: false,

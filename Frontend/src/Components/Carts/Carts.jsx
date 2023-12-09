@@ -48,7 +48,7 @@ const Carts = () => {
                                   {cart.product.title}
                                 </p>
                                 <p class="mx-0 mt-1 mb-0 text-sm text-gray-400">
-                                  36EU - 4US
+                                  {cart.product.price}
                                 </p>
                               </div>
 

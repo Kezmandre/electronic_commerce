@@ -64,7 +64,7 @@ const Product = () => {
       {product?.slice(0, 4).map((item) => {
         return (
           <div key={item._id} className="w-[225px] h-[250px] mb-14 ">
-            <div className=" group w-[225px] h-[250px] bg-[#f5f5f5]">
+            <div className=" group w-[225px] h-[250px] shadow-2xl bg-[#f5f5f5]">
               <div className="flex justify-between items-center">
                 <div className="m-2">
                   <Bar bar={false} text={`${item.discountedPercentage}%`} />

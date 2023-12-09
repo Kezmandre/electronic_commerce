@@ -48,7 +48,7 @@ export const userLogin = async(req,res)=>{
         if(!userExist){
             res.status(httpStatus.NOT_FOUND).json({
                 status:"error",
-                payload:"user not found, create account"
+                message:"user not found, create account"
             })
             return
         }
@@ -70,7 +70,7 @@ export const userLogin = async(req,res)=>{
     } catch (error) {
         res.status(httpStatus.BAD_REQUEST).json({
             status:"error",
-            payload:error.message
+            message:error.message
         })
     }
 }

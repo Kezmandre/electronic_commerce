@@ -15,7 +15,7 @@ const Category = () => {
       <div className="flex justify-center items-center gap-4 mt-4 mb-4">
         {category?.map((cat) => {
           return (
-            <div key={cat.id} className="cursor-pointer w-[200px] hover:text-white hover:bg-[#bd4444] rounded-md h-[130px] border border-black mt-4">
+            <div key={cat.id} className="cursor-pointer w-[200px] hover:text-white hover:bg-[#bd4444] rounded-md h-[200px] shadow-xl mt-4">
               <div className="w-[50px] h-[50px]  mx-auto my-4">
                 <img src={cat.img} alt="" className="w-full h-full pt-2" />
               </div>

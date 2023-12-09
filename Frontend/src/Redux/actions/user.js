@@ -5,10 +5,23 @@ import {
   CREATE_USER_SUCCESS,
   LOGIN_USER_ERROR,
   LOGIN_USER_REQUEST,
+  LOGIN_USER_RESET,
   LOGIN_USER_SUCCESS,
 } from "../constants";
+import { toast } from "react-toastify";
 
 const url = "http://localhost:5000";
+
+
+
+export const Logout=()=>async(dispatch, state)=>{
+  dispatch({
+    type:LOGIN_USER_RESET
+  })
+  localStorage.setItem("userInfo",null)
+  toast.success("Logged out")
+}
+
 export const loginUserAction = (items) => async (dispatch, state) => {
   const config = {
     header: {
@@ -36,7 +49,7 @@ export const loginUserAction = (items) => async (dispatch, state) => {
 
     localStorage.setItem("userInfo", JSON.stringify(userInfo))
   } catch (error) {
-    let errMessage =
+    let message =
       error.response && error.response.data.errors
         ? error.response.data.errors.join(",")
         : error.response && error.response.data.message
@@ -45,10 +58,12 @@ export const loginUserAction = (items) => async (dispatch, state) => {
 
     dispatch({
       type: LOGIN_USER_ERROR,
-      payload: errMessage,
+      payload: message,
     });
+
   }
 };
+
 
 
 
@@ -80,7 +95,7 @@ export const createUserAction = (items) => async (dispatch, state) => {
     localStorage.setItem("createUserInfo", JSON.stringify(createUserInfo))
   } catch (error) {
     let errMessage =
-      error.response && error.response.data.errors
+      error.response && error.response.data.error
         ? error.response.data.errors.join(",")
         : error.response && error.response.data.message
         ? error.response.data.message
