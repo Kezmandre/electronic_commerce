@@ -24,7 +24,7 @@ export const Logout=()=>async(dispatch, state)=>{
 
 export const loginUserAction = (items) => async (dispatch, state) => {
   const config = {
-    header: {
+    headers: {
       "Content-Type": "application/json",
     },
   };

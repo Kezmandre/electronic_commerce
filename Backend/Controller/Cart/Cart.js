@@ -11,20 +11,29 @@ export const addToCart = async (req, res) => {
 
   //create cart item
   try {
-    //check that product is not already in cart
-    const carts = await cartModel.find({}).populate("product");
-    console.log(carts, "carts");
-    const isPresent = carts.findIndex(
-      (item) =>
-        (item.product && item.product._id == data.productId) &&
-        item.userId === userId
-    );
-    if (isPresent !== -1) {
+    // //check that product is not already in cart
+    // const carts = await cartModel.find({user:userId}).populate("product");
+    // console.log(carts, "carts");
+    // const isPresent = carts.findIndex(
+    //   (item) =>
+    //     (item.product && item.product._id == data.productId) ||
+    //     item.userId === userId
+    // );
+    // if (isPresent !== -1) {
+    //   res.status(httpStatus.BAD_REQUEST).json({
+    //     status: "error",
+    //     message: "Product already in cart",
+    //   });
+    //   return;
+    // }
+
+    const cartItems = await cartModel.findOne({user:userId, product:data.productId}).populate("product")
+    if(cartItems){
       res.status(httpStatus.BAD_REQUEST).json({
-        status: "error",
-        message: "Product already in cart",
-      });
-      return;
+        status:"error",
+        message:"Product Already In cart"
+      })
+      return
     }
     const cartItem = await cartModel.create({
       user: userId,

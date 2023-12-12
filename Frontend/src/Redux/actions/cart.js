@@ -57,10 +57,14 @@ export const addToCartActions = (productId) => async (dispatch, state) => {
 };
 
 export const getCartActions = () => async (dispatch, state) => {
+
+  const {
+    loginUser: { user },
+  } = state();
   const config = {
     headers: {
       "Content-Type": "application/json",
-      authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NmZhNTNmNGViNTFkZDZjNzQyMGNhMiIsImVtYWlsIjoibGFxdWFkQGdtYWlsLmNvbSIsImlhdCI6MTcwMTk0NjU4NCwiZXhwIjoxNzAyMDMyOTg0fQ.uFx0hByOPcNQyEUKit4J04eOVWnJ9GUP8xSHWUbMJVk `,
+      authorization: `Bearer ${user.token} `,
     },
   };
 
