@@ -47,7 +47,7 @@ const Register = () => {
       toast.error(`${error}`)
       setTimeout(()=>{
         dispatch({type:CREATE_USER_RESET})
-      })
+      },2000)
     }
   },[success,error])
   return (

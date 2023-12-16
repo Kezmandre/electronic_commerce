@@ -57,7 +57,6 @@ export const addToCartActions = (productId) => async (dispatch, state) => {
 };
 
 export const getCartActions = () => async (dispatch, state) => {
-
   const {
     loginUser: { user },
   } = state();
