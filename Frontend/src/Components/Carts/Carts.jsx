@@ -5,7 +5,7 @@ const Carts = () => {
   const dispatch = useDispatch();
   const { getCarts } = useSelector((state) => state);
     const {carts} = getCarts
-
+    
 
     const totalItems = carts.reduce((total, item) => {
         return total + item.quantity * (item.product.price || 0);
@@ -47,8 +47,8 @@ const Carts = () => {
                                 <p class="text-base font-semibold text-gray-900">
                                   {cart.product.title}
                                 </p>
-                                <p class="mx-0 mt-1 mb-0 text-sm text-gray-400">
-                                  {cart.product.price}
+                                <p class="mx-0 mt-1 mb-0 font-bold text-sm text-gray-800">
+                                  ${cart.product.price}
                                 </p>
                               </div>
 

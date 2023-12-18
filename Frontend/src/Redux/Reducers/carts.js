@@ -4,6 +4,9 @@ import {
   CREATE_CARTS_REQUEST,
   CREATE_CARTS_RESET,
   CREATE_CARTS_SUCCESS,
+  DECREASE_CARTS_REQUEST,
+  DECREASE_CARTS_RESET,
+  DECREASE_CARTS_SUCCESS,
   DELETE_CARTS_ERROR,
   DELETE_CARTS_REQUEST,
   DELETE_CARTS_SUCCESS,
@@ -15,14 +18,19 @@ import {
   GET_CART_REQUEST,
   GET_CART_RESET,
   GET_CART_SUCCESS,
-  UPDATE_CARTS_ERROR,
-  UPDATE_CARTS_REQUEST,
-  UPDATE_CARTS_RESET,
-  UPDATE_CARTS_SUCCESS,
+  INCREASE_CARTS_ERROR,
+  INCREASE_CARTS_REQUEST,
+  INCREASE_CARTS_SUCCESS,
 } from "../constants/cartsConstant";
 
 export const addToCartReducers = (
-  state = { cart: [], loading: false, success: false, error: null },
+  state = {
+    cart: [],
+
+    loading: false,
+    success: false,
+    error: null,
+  },
   action
 ) => {
   switch (action.type) {
@@ -39,6 +47,7 @@ export const addToCartReducers = (
         success: true,
         cart: action.payload,
       };
+
     case CREATE_CARTS_RESET:
       return {
         loading: false,
@@ -61,7 +70,13 @@ export const addToCartReducers = (
 };
 
 export const getCartsReducers = (
-  state = { carts: [], loading: false, success: false, error: null },
+  state = {
+    carts: [],
+    cartCount: 0,
+    loading: false,
+    success: false,
+    error: null,
+  },
   action
 ) => {
   switch (action.type) {
@@ -71,11 +86,13 @@ export const getCartsReducers = (
         loading: false,
       };
     case GET_CARTS_SUCCESS:
+      console.log(action.payload, "payload lllllllllllllllllllllllll");
       return {
         ...state,
         loading: false,
         success: true,
         carts: action.payload,
+        cartCount: action.payload.length,
       };
     case GET_CARTS_RESET:
       return {
@@ -138,26 +155,29 @@ export const getCartReducers = (
   }
 };
 
-export const updateCartReducers = (
+export const updateCartQuantityReducers = (
   state = { cart: null, loading: false, success: false, error: null },
   action
 ) => {
   switch (action.type) {
-    case UPDATE_CARTS_REQUEST:
+    case INCREASE_CARTS_REQUEST:
+      case DECREASE_CARTS_REQUEST:
       return {
         ...state,
         loading: true,
       };
 
-    case UPDATE_CARTS_SUCCESS:
+    case INCREASE_CARTS_SUCCESS:
+      case DECREASE_CARTS_SUCCESS:
       return {
         ...state,
         loading: false,
         success: true,
-        cart: action.payload,
+        cart: action.payload.updateCart,
       };
 
-    case UPDATE_CARTS_RESET:
+    case INCREASE_CARTS_REQUEST:
+      case DECREASE_CARTS_RESET:
       return {
         loading: false,
         success: false,
@@ -165,7 +185,8 @@ export const updateCartReducers = (
         error: null,
       };
 
-    case UPDATE_CARTS_ERROR:
+    case INCREASE_CARTS_ERROR:
+      case DECREASE_CARTS_ERROR:
       return {
         ...state,
         loading: false,

@@ -5,16 +5,32 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { BsCart3 } from "react-icons/bs";
 import { HiMenuAlt3 } from "react-icons/hi";
 import { MdOutlineCancel } from "react-icons/md";
-import {CgLogOut} from "react-icons/cg"
+import { CgLogOut } from "react-icons/cg";
 import { Link } from "react-router-dom";
 import { Logout } from "../../Redux/actions/user";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getCartActions } from "../../Redux/actions/cart";
 
 const Navigation = () => {
-  const dispatch = useDispatch()
-  const logoutHandler=()=>{
-    dispatch(Logout())
-  }
+  const dispatch = useDispatch();
+  const { getCarts } = useSelector((state) => state);
+  const { cartCount } = getCarts;
+
+  // const [cartCount, setCartCount] = useState(carts.length);
+
+  // const totalCartItem = carts.length;
+  // useEffect(() => {
+  //   dispatch(getCartActions());
+
+  //   if (carts.length > 0) {
+  //     setCartCount(carts.length);
+  //   }
+  // }, [dispatch]);
+
+  const logoutHandler = () => {
+    dispatch(Logout());
+  };
   const [sidebar, setSidebar] = useState(false);
 
   const showSidebar = () => {
@@ -53,11 +69,14 @@ const Navigation = () => {
             <div className="relative">
               <BsCart3 className="text-2xl cursor-pointer mr-4" />
               <div className="absolute w-[20px] h-[20px] top-0 right-2 text-sm rounded-full bg-red-600 text-center text-white">
-                1
+                {cartCount}
               </div>
             </div>
           </Link>
-          <CgLogOut className="text-2xl cursor-pointer mr-20" onClick={logoutHandler} />
+          <CgLogOut
+            className="text-2xl cursor-pointer mr-20"
+            onClick={logoutHandler}
+          />
         </div>
         <div className="absolute top-[18px] right-4 md:hidden lg:hidden cursor-pointer">
           <HiMenuAlt3 className="text-3xl" onClick={showSidebar} />

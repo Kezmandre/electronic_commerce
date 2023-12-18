@@ -13,7 +13,7 @@ import {
   updateUserReducer,
 } from "./Reducers";
 import { modalReducer } from "./Reducers/modal";
-import { addToCartReducers, deleteCartReducers, getCartReducers, getCartsReducers, updateCartReducers } from "./Reducers/carts";
+import { addToCartReducers, deleteCartReducers, getCartReducers, getCartsReducers, updateCartQuantityReducers, updateCartReducers } from "./Reducers/carts";
 
 export const reducers = combineReducers({
   createUser: createUserReducer,
@@ -30,7 +30,7 @@ export const reducers = combineReducers({
   addToCart:addToCartReducers,
   getCarts:getCartsReducers,
   getCart:getCartReducers,
-  updateCart:updateCartReducers,
+  updateCart:updateCartQuantityReducers,
   deleteCart:deleteCartReducers,
   modal:modalReducer
 });

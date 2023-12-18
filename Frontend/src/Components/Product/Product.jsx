@@ -11,7 +11,7 @@ import { useEffect } from "react";
 import Modal from "../Modal/Modal";
 
 import { openModalAction } from "../../Redux/actions/modal";
-import { addToCartActions } from "../../Redux/actions/cart";
+import { addToCartActions, getCartActions } from "../../Redux/actions/cart";
 import { toast } from "react-toastify";
 import {
   CREATE_CARTS_RESET,
@@ -20,7 +20,7 @@ import {
 
 const Product = () => {
   const dispatch = useDispatch();
-  const { getProducts, modal, addToCart } = useSelector((state) => state);
+  const { getProducts, modal, addToCart} = useSelector((state) => state);
   const { isModalOpen } = modal;
   const { cart, success: cartSuccess, error: cartError } = addToCart;
   const { product, success, error } = getProducts;
@@ -30,21 +30,20 @@ const Product = () => {
   const openModalHandler = (productId) => {
     dispatch(singleProductActions({ productId: productId }));
     dispatch(openModalAction());
+    
   };
 
   const addToCartHandler = (productId) => {
     console.log(productId, "prodId");
     dispatch(addToCartActions(productId));
-
-    // const cartExist = cart?.find((product) => product._id === _id);
-    // if (cartExist) {
-    //   toast.warn("product already in cart");
-    // }
+   
   };
 
   useEffect(() => {
     if (cartSuccess) {
       toast.success("Product added to cart");
+      dispatch({type:CREATE_CARTS_RESET})
+      dispatch(getCartActions())
     }
 
     if (cartError) {
@@ -57,6 +56,8 @@ const Product = () => {
   // get all products
   useEffect(() => {
     dispatch(getProductActions());
+    dispatch(getCartActions())
+
   }, []);
   return (
     <div className="flex flex-wrap gap-8 justify-start items-center mb-20">

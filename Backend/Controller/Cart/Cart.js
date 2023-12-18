@@ -27,13 +27,15 @@ export const addToCart = async (req, res) => {
     //   return;
     // }
 
-    const cartItems = await cartModel.findOne({user:userId, product:data.productId}).populate("product")
-    if(cartItems){
+    const cartItems = await cartModel
+      .findOne({ user: userId, product: data.productId })
+      .populate("product");
+    if (cartItems) {
       res.status(httpStatus.BAD_REQUEST).json({
-        status:"error",
-        message:"Product Already In cart"
-      })
-      return
+        status: "error",
+        message: "Product Already In cart",
+      });
+      return;
     }
     const cartItem = await cartModel.create({
       user: userId,
@@ -56,15 +58,7 @@ export const addToCart = async (req, res) => {
 export const getAllCartItems = async (req, res) => {
   const userId = req.user.id;
   try {
-    const carts = await cartModel.findOne({ user: userId }).populate("product");
-    if (!carts) {
-      res.status(httpStatus.NOT_FOUND).json({
-        status: "error",
-        payload: "No product in carts",
-      });
-      return;
-    }
-    const getCarts = await cartModel.find({}).populate("product");
+    const getCarts = await cartModel.find({ user: userId }).populate("product");
     res.status(httpStatus.OK).json({
       status: "success",
       payload: getCarts,
@@ -81,26 +75,45 @@ export const updateCartQty = async (req, res) => {
   const userId = req.user.id;
   const quantity = req.body.quantity;
   const { id } = req.params;
+  const {type} = req.body
   console.log(req.body, req.params, "body");
 
   try {
-    if (quantity <= 0) {
-      console.log("here");
+    const cart = await cartModel.findById(id);
+    if (!cart) {
+      res.status(httpStatus.NOT_FOUND).json({
+        status: "error",
+        message: "No Cart Item Found",
+      });
+      return;
+    }
+
+    let newQuantity;
+    if (type === "increase") {
+      newQuantity = cart.quantity + 1;
+    }else if(type === "decrease"){
+      newQuantity = cart.quantity - 1
+    }
+    if (newQuantity <= 0) {
       res.status(httpStatus.BAD_REQUEST).json({
         status: "error",
         payload: "Quantity must be greater than 0",
       });
       return;
+    }else{
+      res.status(httpStatus.BAD_REQUEST).json({
+        status:"error",
+        message:"invalid parameter"
+      })
     }
     const updateCart = await cartModel
       .findOneAndUpdate(
         { _id: id },
-        { quantity: quantity },
+        { quantity: newQuantity },
         {
           new: true,
         }
       )
-      .populate("product");
     res.status(httpStatus.OK).json({
       status: "success",
       updateCart,
@@ -109,7 +122,7 @@ export const updateCartQty = async (req, res) => {
   } catch (error) {
     res.status(httpStatus.NOT_FOUND).json({
       status: "error",
-      payload: error.message,
+      message: error.message,
     });
   }
 };
