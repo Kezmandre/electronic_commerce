@@ -3,9 +3,15 @@ import {
   CREATE_CARTS_ERROR,
   CREATE_CARTS_REQUEST,
   CREATE_CARTS_SUCCESS,
+  DECREASE_CARTS_ERROR,
+  DECREASE_CARTS_REQUEST,
+  DECREASE_CARTS_SUCCESS,
   GET_CARTS_ERROR,
   GET_CARTS_REQUEST,
   GET_CARTS_SUCCESS,
+  INCREASE_CARTS_ERROR,
+  INCREASE_CARTS_REQUEST,
+  INCREASE_CARTS_SUCCESS,
 } from "../constants/cartsConstant";
 
 const url = "http://localhost:5000";
@@ -91,3 +97,74 @@ export const getCartActions = () => async (dispatch, state) => {
     });
   }
 };
+
+
+export const increaseCartAction=(cartId)=>async(dispatch,state)=>{
+  const {
+    loginUser: { user },
+  } = state();
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${user.token} `,
+    },
+  };
+
+  try {
+    dispatch({
+      type:INCREASE_CARTS_REQUEST
+    })
+    const {data} = await axios.patch(`${url}/cart/${cartId}`,{type:"increase"}, config)
+    console.log(data,"updateee")
+    dispatch({
+      type:INCREASE_CARTS_SUCCESS,
+      payload:data.payload
+    })
+  } catch (error) {
+    let errMessage =
+    error.response && error.response.data.errors
+      ? error.response.data.errors.join(",")
+      : error.response && error.response.data.message
+      ? error.response.data.message
+      : error.message;
+      dispatch({
+        type:INCREASE_CARTS_ERROR,
+        payload:errMessage
+      })
+  }
+}
+
+
+export const decreaseCartAction=(cartId)=>async(dispatch,state)=>{
+  const {
+    loginUser: { user },
+  } = state();
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${user.token} `,
+    },
+  };
+
+  try {
+    dispatch({
+      type:DECREASE_CARTS_REQUEST
+    })
+    const {data} = await axios.patch(`${url}/cart/${cartId}`,{type:"decrease"}, config)
+    dispatch({
+      type:DECREASE_CARTS_SUCCESS,
+      payload:data.payload
+    })
+  } catch (error) {
+    let errMessage =
+    error.response && error.response.data.errors
+      ? error.response.data.errors.join(",")
+      : error.response && error.response.data.message
+      ? error.response.data.message
+      : error.message;
+      dispatch({
+        type:DECREASE_CARTS_ERROR,
+        payload:errMessage
+      })
+  }
+}

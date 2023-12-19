@@ -1,15 +1,26 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getCartActions } from "../../Redux/actions/cart";
+import { decreaseCartAction, getCartActions, increaseCartAction } from "../../Redux/actions/cart";
 const Carts = () => {
   const dispatch = useDispatch();
-  const { getCarts } = useSelector((state) => state);
+  const { getCarts,updateCart } = useSelector((state) => state);
+  const {cart:qtyUpdate,} = updateCart
     const {carts} = getCarts
-    
+
+    const increaseCartHandler=(cartId)=>{
+      dispatch(increaseCartAction(cartId))
+      dispatch(getCartActions())
+    }
+    const decreaseCartHandler=(cartId)=>{
+      dispatch(decreaseCartAction(cartId))
+      dispatch(getCartActions())
+    }
 
     const totalItems = carts.reduce((total, item) => {
         return total + item.quantity * (item.product.price || 0);
       }, 0);
+
+    
 
       const total = totalItems + 8
   console.log(carts,"cartssss")
@@ -48,24 +59,25 @@ const Carts = () => {
                                   {cart.product.title}
                                 </p>
                                 <p class="mx-0 mt-1 mb-0 font-bold text-sm text-gray-800">
-                                  ${cart.product.price}
+                                  ${cart.product.price }
                                 </p>
                               </div>
 
                               <div class="mt-4 flex items-end justify-between sm:mt-0 sm:items-start sm:justify-end">
                                 <p class="shrink-0 w-20 text-base font-semibold text-gray-900 sm:order-2 sm:ml-8 sm:text-right">
-                                  ${cart.product.price}
+                                  ${cart.product.price * cart.quantity}
                                 </p>
 
                                 <div class="sm:order-1">
                                   <div class="mx-auto flex h-8 items-stretch text-gray-600">
-                                    <button class="flex items-center justify-center rounded-l-md bg-gray-200 px-4 transition hover:bg-black hover:text-white">
+
+                                    <button onClick={()=>decreaseCartHandler(cart._id)} class="flex items-center justify-center rounded-l-md bg-gray-200 px-4 transition hover:bg-black hover:text-white">
                                       -
                                     </button>
                                     <div class="flex w-full items-center justify-center bg-gray-100 px-4 text-xs uppercase transition">
                                       {cart.quantity}
                                     </div>
-                                    <button class="flex items-center justify-center rounded-r-md bg-gray-200 px-4 transition hover:bg-black hover:text-white">
+                                    <button onClick={()=>increaseCartHandler(cart._id)} class="flex items-center justify-center rounded-r-md bg-gray-200 px-4 transition hover:bg-black hover:text-white">
                                       +
                                     </button>
                                   </div>

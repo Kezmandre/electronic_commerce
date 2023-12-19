@@ -73,13 +73,13 @@ export const getAllCartItems = async (req, res) => {
 
 export const updateCartQty = async (req, res) => {
   const userId = req.user.id;
-  const quantity = req.body.quantity;
+  
   const { id } = req.params;
-  const {type} = req.body
+  const { type,quantity } = req.body;
   console.log(req.body, req.params, "body");
 
   try {
-    const cart = await cartModel.findById(id);
+    const cart = await cartModel.findById(id).populate("product");
     if (!cart) {
       res.status(httpStatus.NOT_FOUND).json({
         status: "error",
@@ -91,34 +91,26 @@ export const updateCartQty = async (req, res) => {
     let newQuantity;
     if (type === "increase") {
       newQuantity = cart.quantity + 1;
-    }else if(type === "decrease"){
-      newQuantity = cart.quantity - 1
+    } else if (type === "decrease") {
+      newQuantity = cart.quantity - 1;
     }
     if (newQuantity <= 0) {
-      res.status(httpStatus.BAD_REQUEST).json({
+    return  res.status(httpStatus.BAD_REQUEST).json({
         status: "error",
         payload: "Quantity must be greater than 0",
       });
-      return;
-    }else{
-      res.status(httpStatus.BAD_REQUEST).json({
-        status:"error",
-        message:"invalid parameter"
-      })
     }
-    const updateCart = await cartModel
-      .findOneAndUpdate(
-        { _id: id },
-        { quantity: newQuantity },
-        {
-          new: true,
-        }
-      )
+    const updateCart = await cartModel.findOneAndUpdate(
+      { _id: id },
+      { quantity: newQuantity },
+      {
+        new: true,
+      }
+    );
     res.status(httpStatus.OK).json({
       status: "success",
       updateCart,
     });
-    console.log(updateCart, "update");
   } catch (error) {
     res.status(httpStatus.NOT_FOUND).json({
       status: "error",

@@ -22,7 +22,7 @@ const Product = () => {
   const dispatch = useDispatch();
   const { getProducts, modal, addToCart} = useSelector((state) => state);
   const { isModalOpen } = modal;
-  const { cart, success: cartSuccess, error: cartError } = addToCart;
+  const { cart, success: cartSuccess, error: cartError,loading } = addToCart;
   const { product, success, error } = getProducts;
 
 
@@ -90,6 +90,7 @@ const Product = () => {
                   onClick={() => openModalHandler(item._id)}
                 />
               </div>
+              {loading }
               <div
                 onClick={() => addToCartHandler(item._id)}
                 className="w-full hidden group-hover:block p-2 font-poppins text-white text-center cursor-pointer bg-black"

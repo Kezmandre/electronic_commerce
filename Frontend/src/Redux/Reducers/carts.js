@@ -4,6 +4,7 @@ import {
   CREATE_CARTS_REQUEST,
   CREATE_CARTS_RESET,
   CREATE_CARTS_SUCCESS,
+  DECREASE_CARTS_ERROR,
   DECREASE_CARTS_REQUEST,
   DECREASE_CARTS_RESET,
   DECREASE_CARTS_SUCCESS,
@@ -20,6 +21,7 @@ import {
   GET_CART_SUCCESS,
   INCREASE_CARTS_ERROR,
   INCREASE_CARTS_REQUEST,
+  INCREASE_CARTS_RESET,
   INCREASE_CARTS_SUCCESS,
 } from "../constants/cartsConstant";
 
@@ -173,10 +175,10 @@ export const updateCartQuantityReducers = (
         ...state,
         loading: false,
         success: true,
-        cart: action.payload.updateCart,
+        cart: action.payload
       };
 
-    case INCREASE_CARTS_REQUEST:
+    case INCREASE_CARTS_RESET:
       case DECREASE_CARTS_RESET:
       return {
         loading: false,
