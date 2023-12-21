@@ -2,13 +2,17 @@ import React, { useEffect } from "react";
 import { closeModalAction } from "../../Redux/actions/modal";
 import { useDispatch, useSelector } from "react-redux";
 import { singleProductActions } from "../../Redux/actions/product";
+import { addToCartActions } from "../../Redux/actions/cart";
 const Modal = () => {
   const dispatch = useDispatch();
   const { getProduct } = useSelector((state) => state);
   const { product } = getProduct;
+  console.log(product, "productssssssssssss")
   const closeHandler = () => {
     dispatch(closeModalAction());
   };
+
+
 
   return (
     <div className="fixed top-0 left-0 w-screen overflow-hidden h-screen bg-white">
@@ -54,7 +58,7 @@ const Modal = () => {
                         aria-current="page"
                       >
                         {" "}
-                        {product ? product.id : ""}
+                        {product ? product._id : ""}
                       </a>
                     </div>
                   </div>
@@ -219,6 +223,7 @@ const Modal = () => {
                 </div>
                 <div class="mt-10 flex flex-col items-center justify-between space-y-4 border-t border-b py-4 sm:flex-row sm:space-y-0">
                   <button
+                  onClick={()=>dispatch(addToCartActions(product._id))}
                     type="button"
                     class="inline-flex items-center justify-center rounded-md border-2 border-transparent bg-gray-900 bg-none px-12 py-3 text-center text-base font-bold text-white transition-all duration-200 ease-in-out focus:shadow hover:bg-gray-800"
                   >
