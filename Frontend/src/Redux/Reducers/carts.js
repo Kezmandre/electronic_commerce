@@ -10,6 +10,7 @@ import {
   DECREASE_CARTS_SUCCESS,
   DELETE_CARTS_ERROR,
   DELETE_CARTS_REQUEST,
+  DELETE_CARTS_RESET,
   DELETE_CARTS_SUCCESS,
   GET_CARTS_ERROR,
   GET_CARTS_REQUEST,
@@ -218,7 +219,7 @@ export const deleteCartReducers = (
         success: true,
         cart: action.payload,
       };
-    case DELETE_USER_RESET:
+    case DELETE_CARTS_RESET:
       return {
         loading: false,
         success: false,

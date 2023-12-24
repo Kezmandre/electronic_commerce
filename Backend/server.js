@@ -12,6 +12,7 @@ import userRouter from "./Routes/User.js"
 import productRouter from "./Routes/Product.js";
 import cartRouter from "./Routes/cart.js";
 import orderRouter from "./Routes/order.js";
+import favoriteRoute from "./Routes/favorite.js";
 
 const app = express();
 
@@ -24,6 +25,7 @@ app.use("/users",userRouter)
 app.use("/product",productRouter)
 app.use("/cart",cartRouter)
 app.use("/order", orderRouter )
+app.use("/favorite", favoriteRoute)
 app.get("/", (req, res) => {
   res.status(httpStatus.OK).json({
     status: "success",

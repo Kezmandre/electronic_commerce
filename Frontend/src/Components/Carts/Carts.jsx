@@ -1,9 +1,12 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { decreaseCartAction, getCartActions, increaseCartAction } from "../../Redux/actions/cart";
+import {toast} from "react-toastify"
+import { decreaseCartAction, deleteCartAction, getCartActions, increaseCartAction } from "../../Redux/actions/cart";
+import { DELETE_CARTS_RESET } from "../../Redux/constants/cartsConstant";
 const Carts = () => {
   const dispatch = useDispatch();
-  const { getCarts,updateCart } = useSelector((state) => state);
+  const { getCarts,updateCart, deleteCart } = useSelector((state) => state);
+  const {success, error,loading}= deleteCart
   const {cart:qtyUpdate,} = updateCart
     const {carts} = getCarts
 
@@ -16,6 +19,25 @@ const Carts = () => {
       dispatch(getCartActions())
     }
 
+    const deleteCartHandler=(cartId)=>{
+        dispatch(deleteCartAction(cartId))
+        
+    }
+
+    useEffect(()=>{
+      if(success){
+        toast.success("product removed from carts")
+        dispatch({type:DELETE_CARTS_RESET})
+        dispatch(getCartActions())
+      }
+
+      if(error){
+        toast.error(`${error}`)
+        setTimeout(()=>{
+          dispatch({type:DELETE_CARTS_RESET})
+        },3000)
+      }
+    },[dispatch,success, error])
     const totalItems = carts.reduce((total, item) => {
         return total + item.quantity * (item.product.price || 0);
       }, 0);
@@ -70,7 +92,7 @@ const Carts = () => {
 
                                 <div class="sm:order-1">
                                   <div class="mx-auto flex h-8 items-stretch text-gray-600">
-
+                                    
                                     <button onClick={()=>decreaseCartHandler(cart._id)} class="flex items-center justify-center rounded-l-md bg-gray-200 px-4 transition hover:bg-black hover:text-white">
                                       -
                                     </button>
@@ -87,8 +109,9 @@ const Carts = () => {
 
                             <div class="absolute top-0 right-0 flex sm:bottom-0 sm:top-auto">
                               <button
+                              onClick={()=>deleteCartHandler(cart._id)}
                                 type="button"
-                                class="flex rounded p-2 text-center text-gray-500 transition-all duration-200 ease-in-out focus:shadow hover:text-red-900"
+                                class="flex rounded p-2 text-center text-red-700 transition-all duration-200 ease-in-out focus:shadow hover:text-red-900"
                               >
                                 <svg
                                   class="h-5 w-5"
@@ -112,7 +135,7 @@ const Carts = () => {
                       );
                     })
                   ) : (
-                    <h2>Your Cart is Empty</h2>
+                    <h2 className="text-center text-3xl font-inter text-red-700 font-bold">Your Cart is Empty</h2>
                   )}
                 </ul>
               </div>

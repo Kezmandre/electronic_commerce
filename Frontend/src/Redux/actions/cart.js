@@ -6,6 +6,9 @@ import {
   DECREASE_CARTS_ERROR,
   DECREASE_CARTS_REQUEST,
   DECREASE_CARTS_SUCCESS,
+  DELETE_CARTS_ERROR,
+  DELETE_CARTS_REQUEST,
+  DELETE_CARTS_SUCCESS,
   GET_CARTS_ERROR,
   GET_CARTS_REQUEST,
   GET_CARTS_SUCCESS,
@@ -26,7 +29,7 @@ export const addToCartActions = (productId) => async (dispatch, state) => {
   const config = {
     headers: {
       "Content-Type": "application/json",
-      authorization: `Bearer ${user.token}`,
+      Authorization: `Bearer ${user.token}`,
     },
   };
 
@@ -69,7 +72,7 @@ export const getCartActions = () => async (dispatch, state) => {
   const config = {
     headers: {
       "Content-Type": "application/json",
-      authorization: `Bearer ${user.token} `,
+      Authorization: `Bearer ${user.token} `,
     },
   };
 
@@ -106,7 +109,7 @@ export const increaseCartAction=(cartId)=>async(dispatch,state)=>{
   const config = {
     headers: {
       "Content-Type": "application/json",
-      authorization: `Bearer ${user.token} `,
+      Authorization: `Bearer ${user.token} `,
     },
   };
 
@@ -142,7 +145,7 @@ export const decreaseCartAction=(cartId)=>async(dispatch,state)=>{
   const config = {
     headers: {
       "Content-Type": "application/json",
-      authorization: `Bearer ${user.token} `,
+      Authorization: `Bearer ${user.token} `,
     },
   };
 
@@ -165,6 +168,41 @@ export const decreaseCartAction=(cartId)=>async(dispatch,state)=>{
       dispatch({
         type:DECREASE_CARTS_ERROR,
         payload:errMessage
+      })
+  }
+}
+
+export const deleteCartAction =(cartId)=>async(dispatch, state)=>{
+  const {loginUser:{user}}= state()
+
+  const config = {
+    headers:{
+      "Content-Type":"application/json",
+      Authorization:`Bearer ${user.token}`
+    }
+  }
+
+  try {
+    dispatch({
+      type:DELETE_CARTS_REQUEST
+    })
+
+    const {data} = await axios.delete(`${url}/cart/${cartId}`, config)
+    dispatch({
+      type:DELETE_CARTS_SUCCESS,
+      payload:data.payload
+    })
+  } catch (error) {
+    let errMessage =
+    error.response && error.response.data.errors
+      ? error.response.data.errors.join(",")
+      : error.response && error.response.data.message
+      ? error.response.data.message
+      : error.message;
+
+      dispatch({
+        type:DELETE_CARTS_ERROR,
+        message:errMessage
       })
   }
 }
