@@ -13,37 +13,53 @@ import Modal from "../Modal/Modal";
 import { openModalAction } from "../../Redux/actions/modal";
 import { addToCartActions, getCartActions } from "../../Redux/actions/cart";
 import { toast } from "react-toastify";
-import {
-  CREATE_CARTS_RESET,
-
-} from "../../Redux/constants/cartsConstant";
+import { CREATE_CARTS_RESET } from "../../Redux/constants/cartsConstant";
+import { addToFavoriteAction } from "../../Redux/actions/favorite";
+import { CREATE_FAVORITE_RESET } from "../../Redux/constants";
 
 const Product = () => {
   const dispatch = useDispatch();
-  const { getProducts, modal, addToCart} = useSelector((state) => state);
+  const { getProducts, modal, addToCart, addToFavorite } = useSelector(
+    (state) => state
+  );
   const { isModalOpen } = modal;
-  const { cart, success: cartSuccess, error: cartError,loading } = addToCart;
+  const { cart, success: cartSuccess, error: cartError, loading } = addToCart;
+  const { success: favoriteSuccess, error: favoriteError } = addToFavorite;
   const { product, success, error } = getProducts;
-
 
   // get single product
   const openModalHandler = (productId) => {
     dispatch(singleProductActions({ productId: productId }));
     dispatch(openModalAction());
-    
   };
 
+  const addToFavoriteHandler = (productId) => {
+    dispatch(addToFavoriteAction(productId));
+  };
   const addToCartHandler = (productId) => {
     console.log(productId, "prodId");
     dispatch(addToCartActions(productId));
-   
   };
+
+  useEffect(() => {
+    if (favoriteSuccess) {
+      toast.success(" Product added To Favorites");
+      dispatch({ type: CREATE_FAVORITE_RESET });
+    }
+
+    if (favoriteError) {
+      toast.warn(`${favoriteError}`);
+      setTimeout(() => {
+        dispatch({ type: CREATE_FAVORITE_RESET });
+      }, 3000);
+    }
+  }, [favoriteSuccess, favoriteError]);
 
   useEffect(() => {
     if (cartSuccess) {
       toast.success("Product added to cart");
-      dispatch({type:CREATE_CARTS_RESET})
-      dispatch(getCartActions())
+      dispatch({ type: CREATE_CARTS_RESET });
+      dispatch(getCartActions());
     }
 
     if (cartError) {
@@ -56,8 +72,7 @@ const Product = () => {
   // get all products
   useEffect(() => {
     dispatch(getProductActions());
-    dispatch(getCartActions())
-
+    dispatch(getCartActions());
   }, []);
   return (
     <div className="flex flex-wrap gap-8 justify-start items-center mb-20">
@@ -71,7 +86,10 @@ const Product = () => {
                   <Bar bar={false} text={`${item.discountedPercentage}%`} />
                 </div>
                 <div className="flex flex-col m-2 gap-2 ">
-                  <div className="w-[20px] h-[20px] rounded-full bg-white">
+                  <div
+                    onClick={() => addToFavoriteHandler(item._id)}
+                    className="w-[20px] h-[20px] rounded-full bg-white"
+                  >
                     <CiHeart className="w-full h-full cursor-pointer" />
                   </div>
                   <div
@@ -90,7 +108,7 @@ const Product = () => {
                   onClick={() => openModalHandler(item._id)}
                 />
               </div>
-              {loading }
+              {loading}
               <div
                 onClick={() => addToCartHandler(item._id)}
                 className="w-full hidden group-hover:block p-2 font-poppins text-white text-center cursor-pointer bg-black"

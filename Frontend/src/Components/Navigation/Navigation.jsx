@@ -64,7 +64,9 @@ const Navigation = () => {
             />
             <BiSearch className="text-2xl " />
           </div>
+          <Link to="/favorite">
           <AiOutlineHeart className="text-2xl cursor-pointer mr-4" />
+          </Link>
           <Link to="/cart">
             <div className="relative">
               <BsCart3 className="text-2xl cursor-pointer mr-4" />

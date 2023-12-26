@@ -6,7 +6,7 @@ import { DELETE_CARTS_RESET } from "../../Redux/constants/cartsConstant";
 const Carts = () => {
   const dispatch = useDispatch();
   const { getCarts,updateCart, deleteCart } = useSelector((state) => state);
-  const {success, error,loading}= deleteCart
+  const {success, error}= deleteCart
   const {cart:qtyUpdate,} = updateCart
     const {carts} = getCarts
 

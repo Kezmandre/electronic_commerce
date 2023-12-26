@@ -1,9 +1,12 @@
 import { combineReducers } from "redux";
 import {
+  createFavoriteReducer,
   createProductReducer,
   createUserReducer,
+  deleteFavoriteReducer,
   deleteProductReducer,
   deleteUserReducer,
+  getAllFavoriteReducer,
   getProductReducer,
   getProductsReducer,
   getUserReducer,
@@ -13,7 +16,13 @@ import {
   updateUserReducer,
 } from "./Reducers";
 import { modalReducer } from "./Reducers/modal";
-import { addToCartReducers, deleteCartReducers, getCartReducers, getCartsReducers, updateCartQuantityReducers, updateCartReducers } from "./Reducers/carts";
+import {
+  addToCartReducers,
+  deleteCartReducers,
+  getCartReducers,
+  getCartsReducers,
+  updateCartQuantityReducers,
+} from "./Reducers/carts";
 
 export const reducers = combineReducers({
   createUser: createUserReducer,
@@ -23,14 +32,17 @@ export const reducers = combineReducers({
   deleteUser: deleteUserReducer,
   loginUser: loginUserReducer,
   createProduct: createProductReducer,
-  getProduct:getProductReducer,
-  getProducts:getProductsReducer,
-  updateProduct:updateProductReducer,
-  deleteProduct:deleteProductReducer,
-  addToCart:addToCartReducers,
-  getCarts:getCartsReducers,
-  getCart:getCartReducers,
-  updateCart:updateCartQuantityReducers,
-  deleteCart:deleteCartReducers,
-  modal:modalReducer
+  getProduct: getProductReducer,
+  getProducts: getProductsReducer,
+  updateProduct: updateProductReducer,
+  deleteProduct: deleteProductReducer,
+  addToCart: addToCartReducers,
+  getCarts: getCartsReducers,
+  getCart: getCartReducers,
+  updateCart: updateCartQuantityReducers,
+  deleteCart: deleteCartReducers,
+  addToFavorite:createFavoriteReducer,
+  getFavorites:getAllFavoriteReducer,
+  deleteFavorite:deleteFavoriteReducer,
+  modal: modalReducer,
 });
