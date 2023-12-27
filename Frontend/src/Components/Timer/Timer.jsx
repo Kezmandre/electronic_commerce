@@ -9,7 +9,7 @@ const Timer = () => {
 
   let interval = useRef();
   const startTimer = () => {
-    const flashDate = new Date("Dec 30 2023 00:00:00").getTime();
+    const flashDate = new Date("Jan 12 2024 00:00:00").getTime();
     interval = setInterval(() => {
       const now = new Date().getTime();
       const variance = flashDate - now;

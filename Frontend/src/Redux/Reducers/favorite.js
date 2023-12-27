@@ -53,7 +53,7 @@ export const createFavoriteReducer = (
 };
 
 export const getAllFavoriteReducer = (
-  state = { favorite: [], loading: false, success: false, error: null },
+  state = { favorite: [], favoriteCount:0, loading: false, success: false, error: null },
   action
 ) => {
   switch (action.type) {
@@ -68,6 +68,7 @@ export const getAllFavoriteReducer = (
         loading: false,
         success: true,
         favorite: action.payload,
+        favoriteCount: action.payload.length
       };
 
     case GET_FAVORITES_RESET:

@@ -18,7 +18,7 @@ const Carts = () => {
       dispatch(decreaseCartAction(cartId))
       dispatch(getCartActions())
     }
-
+// delete cart items handler
     const deleteCartHandler=(cartId)=>{
         dispatch(deleteCartAction(cartId))
         

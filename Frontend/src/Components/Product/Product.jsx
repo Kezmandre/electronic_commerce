@@ -14,8 +14,12 @@ import { openModalAction } from "../../Redux/actions/modal";
 import { addToCartActions, getCartActions } from "../../Redux/actions/cart";
 import { toast } from "react-toastify";
 import { CREATE_CARTS_RESET } from "../../Redux/constants/cartsConstant";
-import { addToFavoriteAction } from "../../Redux/actions/favorite";
+import {
+  addToFavoriteAction,
+  getAllFavoritesAction,
+} from "../../Redux/actions/favorite";
 import { CREATE_FAVORITE_RESET } from "../../Redux/constants";
+import ToolTips from "../ToolTips/ToolTips";
 
 const Product = () => {
   const dispatch = useDispatch();
@@ -45,6 +49,7 @@ const Product = () => {
     if (favoriteSuccess) {
       toast.success(" Product added To Favorites");
       dispatch({ type: CREATE_FAVORITE_RESET });
+      dispatch(getAllFavoritesAction())
     }
 
     if (favoriteError) {
@@ -73,6 +78,7 @@ const Product = () => {
   useEffect(() => {
     dispatch(getProductActions());
     dispatch(getCartActions());
+    dispatch(getAllFavoritesAction());
   }, []);
   return (
     <div className="flex flex-wrap gap-8 justify-start items-center mb-20">
@@ -80,7 +86,7 @@ const Product = () => {
       {product?.slice(0, 4).map((item) => {
         return (
           <div key={item._id} className="w-[225px] h-[250px] mb-14 ">
-            <div className=" group w-[225px] h-[250px] shadow-2xl bg-[#f5f5f5]">
+            <div className=" group w-[225px] h-[250px] border border-gray-100 shadow-md bg-[#f5f5f5]">
               <div className="flex justify-between items-center">
                 <div className="m-2">
                   <Bar bar={false} text={`${item.discountedPercentage}%`} />
@@ -88,10 +94,15 @@ const Product = () => {
                 <div className="flex flex-col m-2 gap-2 ">
                   <div
                     onClick={() => addToFavoriteHandler(item._id)}
-                    className="w-[20px] h-[20px] rounded-full bg-white"
+                    className="w-[25px] h-[25px] rounded-full bg-white"
                   >
-                    <CiHeart className="w-full h-full cursor-pointer" />
+                    <ToolTips text="add to favorite">
+                      <div className="w-8 h-8 text-gray-600 group-hover:text-yellow-500 transition-colors duration-300 cursor-pointer">
+                        <CiHeart className=" text-2xl cursor-pointer text-center" />
+                      </div>
+                    </ToolTips>
                   </div>
+
                   <div
                     onClick={() => openModalHandler(item._id)}
                     className="w-[20px] h-[20px] cursor-pointer rounded-full bg-white"
@@ -124,7 +135,7 @@ const Product = () => {
                 {item.title}
               </p>
               <span className="flex justify-start items-center gap-2 ">
-                <p className="text-[#db4444] text-sm">${item.price}</p>
+                <p className="text-[#db4444] text-sm font-semibold">${item.price}</p>
                 <p className="text-[grey] line-through text-sm">
                   ${item.discountedPrice}
                 </p>

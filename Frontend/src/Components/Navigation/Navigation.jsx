@@ -14,8 +14,9 @@ import { getCartActions } from "../../Redux/actions/cart";
 
 const Navigation = () => {
   const dispatch = useDispatch();
-  const { getCarts } = useSelector((state) => state);
+  const { getCarts,getFavorites } = useSelector((state) => state);
   const { cartCount } = getCarts;
+  const {favoriteCount}= getFavorites
 
   // const [cartCount, setCartCount] = useState(carts.length);
 
@@ -64,12 +65,17 @@ const Navigation = () => {
             />
             <BiSearch className="text-2xl " />
           </div>
+          <div className="relative">
           <Link to="/favorite">
-          <AiOutlineHeart className="text-2xl cursor-pointer mr-4" />
+          <div className="absolute w-[20px] h-[20px] top-0 right-2 text-sm rounded-full bg-red-600 text-center text-white">
+                {favoriteCount}
+              </div>
+          <AiOutlineHeart className="text-3xl cursor-pointer mr-4" />
           </Link>
+          </div>
           <Link to="/cart">
             <div className="relative">
-              <BsCart3 className="text-2xl cursor-pointer mr-4" />
+              <BsCart3 className="text-3xl cursor-pointer mr-4" />
               <div className="absolute w-[20px] h-[20px] top-0 right-2 text-sm rounded-full bg-red-600 text-center text-white">
                 {cartCount}
               </div>
