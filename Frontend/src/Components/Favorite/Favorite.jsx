@@ -2,17 +2,43 @@ import React from "react";
 import empty_Fav from "../Assets/Images/fav_empty.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getAllFavoritesAction } from "../../Redux/actions/favorite";
+import {
+  deleteFavoriteAction,
+  getAllFavoritesAction,
+} from "../../Redux/actions/favorite";
 import { MdDeleteOutline } from "react-icons/md";
 import { getCartActions } from "../../Redux/actions/cart";
+import { toast } from "react-toastify";
+import { DELETE_FAVORITE_RESET } from "../../Redux/constants";
 
 const Favorite = () => {
   const dispatch = useDispatch();
-  const { getFavorites } = useSelector((state) => state);
+  const { getFavorites, deleteFavorite } = useSelector((state) => state);
+  const { success, error } = deleteFavorite;
   const { favorite } = getFavorites;
+
+  const removeFavoriteHandler = (favoriteId) => {
+    dispatch(deleteFavoriteAction(favoriteId));
+  };
+
+  useEffect(() => {
+    if (success) {
+      toast.success("product removed from favorites");
+      dispatch({ type: DELETE_FAVORITE_RESET });
+      dispatch(getAllFavoritesAction());
+    }
+
+    if (error) {
+      toast.error(`${error}`);
+      setTimeout(() => {
+        dispatch({ type: DELETE_FAVORITE_RESET });
+      }, 3000);
+    }
+  });
+
   useEffect(() => {
     dispatch(getAllFavoritesAction());
-    dispatch(getCartActions())
+    dispatch(getCartActions());
   }, []);
   return (
     <div className="flex justify-start items-center gap-2 flex-wrap">
@@ -123,7 +149,7 @@ const Favorite = () => {
                   Add to cart
                 </a>
               </div>
-              <div className=" group absolute w-[30px] h-[30px] top-4 right-4 rounded-md shadow-md border cursor-pointer">
+              <div onClick={()=>removeFavoriteHandler(fav._id)} className=" group absolute w-[30px] h-[30px] top-4 right-4 rounded-md shadow-md border cursor-pointer">
                 <MdDeleteOutline className=" group hover:text-red-700 w-full h-full" />
               </div>
             </div>
