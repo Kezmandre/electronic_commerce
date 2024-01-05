@@ -101,8 +101,7 @@ export const getCartActions = () => async (dispatch, state) => {
   }
 };
 
-
-export const increaseCartAction=(cartId)=>async(dispatch,state)=>{
+export const increaseCartAction = (cartId) => async (dispatch, state) => {
   const {
     loginUser: { user },
   } = state();
@@ -115,30 +114,33 @@ export const increaseCartAction=(cartId)=>async(dispatch,state)=>{
 
   try {
     dispatch({
-      type:INCREASE_CARTS_REQUEST
-    })
-    const {data} = await axios.patch(`${url}/cart/${cartId}`,{type:"increase"}, config)
-    console.log(data,"updateee")
+      type: INCREASE_CARTS_REQUEST,
+    });
+    const { data } = await axios.patch(
+      `${url}/cart/${cartId}`,
+      { type: "increase" },
+      config
+    );
+    console.log(data, "updateee");
     dispatch({
-      type:INCREASE_CARTS_SUCCESS,
-      payload:data.payload
-    })
+      type: INCREASE_CARTS_SUCCESS,
+      payload: data.payload,
+    });
   } catch (error) {
     let errMessage =
-    error.response && error.response.data.errors
-      ? error.response.data.errors.join(",")
-      : error.response && error.response.data.message
-      ? error.response.data.message
-      : error.message;
-      dispatch({
-        type:INCREASE_CARTS_ERROR,
-        payload:errMessage
-      })
+      error.response && error.response.data.errors
+        ? error.response.data.errors.join(",")
+        : error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    dispatch({
+      type: INCREASE_CARTS_ERROR,
+      payload: errMessage,
+    });
   }
-}
+};
 
-
-export const decreaseCartAction=(cartId)=>async(dispatch,state)=>{
+export const decreaseCartAction = (cartId) => async (dispatch, state) => {
   const {
     loginUser: { user },
   } = state();
@@ -151,58 +153,64 @@ export const decreaseCartAction=(cartId)=>async(dispatch,state)=>{
 
   try {
     dispatch({
-      type:DECREASE_CARTS_REQUEST
-    })
-    const {data} = await axios.patch(`${url}/cart/${cartId}`,{type:"decrease"}, config)
+      type: DECREASE_CARTS_REQUEST,
+    });
+    const { data } = await axios.patch(
+      `${url}/cart/${cartId}`,
+      { type: "decrease" },
+      config
+    );
     dispatch({
-      type:DECREASE_CARTS_SUCCESS,
-      payload:data.payload
-    })
+      type: DECREASE_CARTS_SUCCESS,
+      payload: data.payload,
+    });
   } catch (error) {
     let errMessage =
-    error.response && error.response.data.errors
-      ? error.response.data.errors.join(",")
-      : error.response && error.response.data.message
-      ? error.response.data.message
-      : error.message;
-      dispatch({
-        type:DECREASE_CARTS_ERROR,
-        payload:errMessage
-      })
+      error.response && error.response.data.errors
+        ? error.response.data.errors.join(",")
+        : error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    dispatch({
+      type: DECREASE_CARTS_ERROR,
+      payload: errMessage,
+    });
   }
-}
+};
 
-export const deleteCartAction =(cartId)=>async(dispatch, state)=>{
-  const {loginUser:{user}}= state()
+export const deleteCartAction = (cartId) => async (dispatch, state) => {
+  const {
+    loginUser: { user },
+  } = state();
 
   const config = {
-    headers:{
-      "Content-Type":"application/json",
-      Authorization:`Bearer ${user.token}`
-    }
-  }
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${user.token}`,
+    },
+  };
 
   try {
     dispatch({
-      type:DELETE_CARTS_REQUEST
-    })
+      type: DELETE_CARTS_REQUEST,
+    });
 
-    const {data} = await axios.delete(`${url}/cart/${cartId}`, config)
+    const { data } = await axios.delete(`${url}/cart/${cartId}`, config);
     dispatch({
-      type:DELETE_CARTS_SUCCESS,
-      payload:data.payload
-    })
+      type: DELETE_CARTS_SUCCESS,
+      payload: data.payload,
+    });
   } catch (error) {
     let errMessage =
-    error.response && error.response.data.errors
-      ? error.response.data.errors.join(",")
-      : error.response && error.response.data.message
-      ? error.response.data.message
-      : error.message;
+      error.response && error.response.data.errors
+        ? error.response.data.errors.join(",")
+        : error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
 
-      dispatch({
-        type:DELETE_CARTS_ERROR,
-        message:errMessage
-      })
+    dispatch({
+      type: DELETE_CARTS_ERROR,
+      message: errMessage,
+    });
   }
-}
+};

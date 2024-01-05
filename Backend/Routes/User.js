@@ -1,6 +1,6 @@
 import express from "express";
 import validateMiddle from "../Middleware/Validation.js";
-import { userSchema } from "../Controller/Users/UserSchema.js";
+import { LoginSchema, userSchema } from "../Controller/Users/UserSchema.js";
 import {
   createUser,
   deleteUser,
@@ -19,6 +19,6 @@ router
   .get(userVerification, Authorized(["default", "admin"]), getUser)
   .patch(userVerification, Authorized(["default", "admin"]), updateUser)
   .delete(userVerification, Authorized(["default", "admin"]), deleteUser);
-router.route("/login").post(userLogin);
+router.route("/login").post(validateMiddle(LoginSchema),userLogin);
 
 export default router;

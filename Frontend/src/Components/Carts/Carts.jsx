@@ -38,8 +38,9 @@ const Carts = () => {
         },3000)
       }
     },[dispatch,success, error])
+
     const totalItems = carts.reduce((total, item) => {
-        return total + item.quantity * (item.product.price || 0);
+        return total + item.quantity * (item.product?.price || 0);
       }, 0);
 
     
@@ -69,7 +70,7 @@ const Carts = () => {
                           <div class="shrink-0">
                             <img
                               class="h-25 w-25 max-w-full rounded-lg object-cover"
-                              src={cart.product.imageUrl}
+                              src={cart.product?.imageUrl}
                               alt=""
                             />
                           </div>
@@ -78,16 +79,16 @@ const Carts = () => {
                             <div class="sm:col-gap-5 sm:grid sm:grid-cols-2">
                               <div class="pr-8 sm:pr-5">
                                 <p class="text-base font-semibold text-gray-900">
-                                  {cart.product.title}
+                                  {cart.product?.title}
                                 </p>
                                 <p class="mx-0 mt-1 mb-0 font-bold text-sm text-gray-800">
-                                  ${cart.product.price }
+                                  ${cart.product?.price }
                                 </p>
                               </div>
 
                               <div class="mt-4 flex items-end justify-between sm:mt-0 sm:items-start sm:justify-end">
                                 <p class="shrink-0 w-20 text-base font-semibold text-gray-900 sm:order-2 sm:ml-8 sm:text-right">
-                                  ${cart.product.price * cart.quantity}
+                                  ${cart.product?.price * cart.quantity}
                                 </p>
 
                                 <div class="sm:order-1">

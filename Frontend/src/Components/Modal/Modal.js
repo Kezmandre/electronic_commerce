@@ -15,7 +15,7 @@ const Modal = () => {
 
 
   return (
-    <div className="fixed top-0 left-0 w-screen overflow-hidden h-screen bg-white">
+    <div className="fixed top-0 left-0 w-screen overflow-hidden h-screen z-10 bg-white">
       <div className="w-8/12 h-full relative shadow-2xl rounded-md overflow-scroll mx-auto bg-white mt-20 mb-8">
         <section class="py-12 sm:py-16">
           <div class="container mx-auto px-4">

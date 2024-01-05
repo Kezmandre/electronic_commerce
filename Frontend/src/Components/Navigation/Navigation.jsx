@@ -67,18 +67,26 @@ const Navigation = () => {
           </div>
           <div className="relative">
           <Link to="/favorite">
-          <div className="absolute w-[20px] h-[20px] top-0 right-2 text-sm rounded-full bg-red-600 text-center text-white">
+            {favoriteCount === 0 ? (
+              <div>{""}</div>
+            ) : (
+              <div className="absolute w-[20px] h-[20px] top-0 right-2 text-sm rounded-full bg-red-600 text-center text-white">
                 {favoriteCount}
               </div>
+            )}
+          
           <AiOutlineHeart className="text-3xl cursor-pointer mr-4" />
           </Link>
           </div>
           <Link to="/cart">
             <div className="relative">
               <BsCart3 className="text-3xl cursor-pointer mr-4" />
-              <div className="absolute w-[20px] h-[20px] top-0 right-2 text-sm rounded-full bg-red-600 text-center text-white">
-                {cartCount}
-              </div>
+              {cartCount === 0 ? (""):(
+                 <div className="absolute w-[20px] h-[20px] top-0 right-2 text-sm rounded-full bg-red-600 text-center text-white">
+                 {cartCount}
+               </div>
+              )}
+             
             </div>
           </Link>
           <CgLogOut

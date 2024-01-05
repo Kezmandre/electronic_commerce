@@ -88,7 +88,7 @@ export const getAllFavoritesAction = () => async (dispatch, state) => {
 export const deleteFavoriteAction = (favoriteId) => async (dispatch, state) => {
   const {
     loginUser: { user },
-  } = state;
+  } = state();
 
   const config = {
     headers: {

@@ -41,9 +41,9 @@ const About = () => {
             return (
               <div
                 key={item.id}
-                className="border border-black hover:border-0 hover:bg-[#db4444] hover:text-white rounded-md h-full w-[240px]"
+                className="border shadow-md hover:border-0 hover:bg-[#db4444] hover:text-white rounded-md h-full w-[240px]"
               >
-                <div className="w-[50px] h-[50px] my-6 relative bg-black rounded-full mx-auto my-2 border-4 border-[grey]">
+                <div className="w-[50px] h-[50px] my-6 relative bg-black rounded-full mx-auto  border-4 border-[grey]">
                   <img
                     src={item.img}
                     alt=""
@@ -78,7 +78,7 @@ const About = () => {
             );
           })}
         </div>
-       <Services/>
+        <Services />
       </div>
     </div>
   );

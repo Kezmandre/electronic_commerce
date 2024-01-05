@@ -4,7 +4,7 @@ import { uniqueCode } from "../../Utility/uniqueCode.js";
 import bcryptjs from "bcryptjs";
 import { generateToken } from "../../Utility/jwt-token.js";
 import userModel from "../../Model/User.js";
-import cartModel from "../../Model/Cart.js"
+import cartModel from "../../Model/Cart.js";
 
 export const createUser = async (req, res) => {
   const { name, email, password } = req.body;
@@ -34,7 +34,7 @@ export const createUser = async (req, res) => {
   } catch (error) {
     res.status(httpStatus.BAD_REQUEST).json({
       status: "error",
-      payload: error.message,
+      message: error.message,
     });
   }
 };
@@ -65,11 +65,6 @@ export const userLogin = async (req, res) => {
       payload: serialize(userExist),
       token: generateToken(userExist._id, userExist.email),
     });
-
-    // const userCart = await cartModel.findOne({user:req.user._id})
-    // if(!userCart){
-    //     await cartModel.create({user:req.user._id})
-    // }
   } catch (error) {
     res.status(httpStatus.BAD_REQUEST).json({
       status: "error",

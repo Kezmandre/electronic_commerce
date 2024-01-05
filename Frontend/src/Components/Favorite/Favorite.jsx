@@ -7,20 +7,27 @@ import {
   getAllFavoritesAction,
 } from "../../Redux/actions/favorite";
 import { MdDeleteOutline } from "react-icons/md";
-import { getCartActions } from "../../Redux/actions/cart";
+import { addToCartActions, getCartActions } from "../../Redux/actions/cart";
 import { toast } from "react-toastify";
 import { DELETE_FAVORITE_RESET } from "../../Redux/constants";
+import { CREATE_CARTS_RESET } from "../../Redux/constants/cartsConstant";
 
 const Favorite = () => {
   const dispatch = useDispatch();
-  const { getFavorites, deleteFavorite } = useSelector((state) => state);
+  const { getFavorites, deleteFavorite, addToCart } = useSelector(
+    (state) => state
+  );
   const { success, error } = deleteFavorite;
   const { favorite } = getFavorites;
+  const { success: cartSuccess, error: cartError, loading } = addToCart;
 
   const removeFavoriteHandler = (favoriteId) => {
     dispatch(deleteFavoriteAction(favoriteId));
   };
 
+  const addToCartHandlers = (favoriteId) => {
+    dispatch(addToCartActions(favoriteId));
+  };
   useEffect(() => {
     if (success) {
       toast.success("product removed from favorites");
@@ -34,7 +41,22 @@ const Favorite = () => {
         dispatch({ type: DELETE_FAVORITE_RESET });
       }, 3000);
     }
-  });
+  }, [success, error]);
+
+  useEffect(() => {
+    if (cartSuccess) {
+      toast.success("Product added to cart");
+      dispatch({ type: CREATE_CARTS_RESET });
+      dispatch(getCartActions());
+    }
+
+    if (cartError) {
+      toast.warn(`${cartError}`);
+      setTimeout(() => {
+        dispatch({ type: CREATE_CARTS_RESET });
+      }, 3000);
+    }
+  }, [cartSuccess, cartError]);
 
   useEffect(() => {
     dispatch(getAllFavoritesAction());
@@ -47,7 +69,7 @@ const Favorite = () => {
           return (
             <div
               key={fav._id}
-              className="relative m-10 flex w-full max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md"
+              className="relative my-6 mx-12  w-full max-w-xs  overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md"
             >
               <a
                 className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl"
@@ -129,8 +151,8 @@ const Favorite = () => {
                   </div>
                 </div>
                 <a
-                  href="#"
-                  className="flex items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300"
+                  onClick={() => addToCartHandlers(fav.product._id)}
+                  className="flex items-center cursor-pointer justify-center rounded-md bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -149,21 +171,24 @@ const Favorite = () => {
                   Add to cart
                 </a>
               </div>
-              <div onClick={()=>removeFavoriteHandler(fav._id)} className=" group absolute w-[30px] h-[30px] top-4 right-4 rounded-md shadow-md border cursor-pointer">
+              <div
+                onClick={() => removeFavoriteHandler(fav._id)}
+                className=" group absolute w-[30px] h-[30px] top-4 right-4 rounded-md shadow-md border cursor-pointer"
+              >
                 <MdDeleteOutline className=" group hover:text-red-700 w-full h-full" />
               </div>
             </div>
           );
         })
       ) : (
-        <>
+        <div className="flex flex-col w-[400px] h-[400px] mx-auto">
           <div className="w-[300px] h-[300px] bg-red-700 mx-auto my-10">
             <img src={empty_Fav} alt="" className="w-full h-full bg-cover" />
           </div>
           <h2 className="text-center text-3xl font-semibold font-inter my-4">
             Your Favorite List is Empty
           </h2>
-        </>
+        </div>
       )}
     </div>
   );

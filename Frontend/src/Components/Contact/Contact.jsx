@@ -1,16 +1,19 @@
 import React from "react";
 import { BiPhone } from "react-icons/bi";
 import { FiMail } from "react-icons/fi";
+import { Link } from "react-router-dom";
 const Contact = () => {
   return (
     <div className="m-0 p-0 border-box">
       <div className="w-10/12 h-full mx-auto my-4">
-        <p className="pb-4 text-poppins font-medium text-[grey]">
+        <Link to="/">
+        <p className="pb-4 text-poppins font-medium text-[grey] cursor-pointer">
           Home /{" "}
-          <span className="text-black font-medium text-poppins">Contact</span>
+          <span className="text-black font-medium text-poppins cursor-pointer">Contact</span>
         </p>
+        </Link>
         <div className="flex flex-col md:flex-row lg:flex-row justify-center gap-2  items-center">
-          <div className="w-[350px] h-[400px] bg-[#fff] shadow-lg p-6 rounded-md">
+          <div className="w-[350px] h-[400px] bg-[#fff] shadow-md border p-6 rounded-md">
             <div className="flex justify-left items-center gap-4 mb-4">
               <div className="w-[30px] h-[30px] rounded-full bg-[#db4444] relative">
                 <BiPhone className="absolute top-2 left-2 text-white" />
@@ -41,7 +44,7 @@ const Contact = () => {
               Emails:support@exclusive.com
             </p>
           </div>
-          <div className=" w-[350px] lg:w-full lg:flex-grow h-[500px] lg:h-[400px] bg-[#fff]  shadow-lg rounded-md">
+          <div className=" w-[350px] lg:w-full lg:flex-grow h-[500px] lg:h-[400px] bg-[#fff]  shadow-md border rounded-md">
             <div className="flex-col flex gap-4 lg:flex-row justify-evenly items-center mx-auto my-6 w-11/12 p-2">
               <input
                 type="text"
@@ -49,7 +52,7 @@ const Contact = () => {
                 required
                 name=""
                 id=""
-                className="border-[1px] p-2 w-full bg-searchBg outline-none rounded-md text-sm"
+                className="border-[1px] p-2 w-full bg-searchBg outline-none rounded-md text-sm hover:border-gray-400"
               />
               <input
                 type="text"
@@ -57,7 +60,7 @@ const Contact = () => {
                 required
                 name=""
                 id=""
-                className="border-[1px] p-2 w-full bg-searchBg outline-none rounded-md text-sm"
+                className="border-[1px] p-2 w-full bg-searchBg outline-none rounded-md text-sm hover:border-gray-400"
               />
               <input
                 type="text"
@@ -65,7 +68,7 @@ const Contact = () => {
                 required
                 name=""
                 id=""
-                className="border-[1px] p-2 w-full bg-searchBg outline-none rounded-md text-sm"
+                className="border-[1px] p-2 w-full bg-searchBg outline-none rounded-md text-sm hover:border-gray-400"
               />
             </div>
             <div className="w-11/12 mx-auto mb-4">
@@ -73,7 +76,7 @@ const Contact = () => {
                 placeholder="Your Message"
                 name=""
                 id=""
-                className="w-full h-[200px] p-2 overflow-hidden resize-none outline-none rounded-md bg-searchBg mx"
+                className="w-full h-[200px] p-2 overflow-hidden resize-none outline-none rounded-md shadow-md bg-searchBg hover:border-gray-400"
               ></textarea>
             </div>
             <button className="float-right cursor-pointer hover:bg-red-400 bg-btnBg p-2 text-white font-poppins rounded-md mr-8 w-[200px]">
