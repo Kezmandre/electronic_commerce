@@ -11,12 +11,13 @@ import { Logout } from "../../Redux/actions/user";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getCartActions } from "../../Redux/actions/cart";
+import ToolTips from "../ToolTips/ToolTips";
 
 const Navigation = () => {
   const dispatch = useDispatch();
-  const { getCarts,getFavorites } = useSelector((state) => state);
+  const { getCarts, getFavorites } = useSelector((state) => state);
   const { cartCount } = getCarts;
-  const {favoriteCount}= getFavorites
+  const { favoriteCount } = getFavorites;
 
   // const [cartCount, setCartCount] = useState(carts.length);
 
@@ -66,29 +67,32 @@ const Navigation = () => {
             <BiSearch className="text-2xl " />
           </div>
           <div className="relative">
-          <Link to="/favorite">
-            {favoriteCount === 0 ? (
-              <div>{""}</div>
-            ) : (
-              <div className="absolute w-[20px] h-[20px] top-0 right-2 text-sm rounded-full bg-red-600 text-center text-white">
-                {favoriteCount}
-              </div>
-            )}
-          
-          <AiOutlineHeart className="text-3xl cursor-pointer mr-4" />
-          </Link>
-          </div>
-          <Link to="/cart">
-            <div className="relative">
-              <BsCart3 className="text-3xl cursor-pointer mr-4" />
-              {cartCount === 0 ? (""):(
-                 <div className="absolute w-[20px] h-[20px] top-0 right-2 text-sm rounded-full bg-red-600 text-center text-white">
-                 {cartCount}
-               </div>
+            <Link to="/favorite">
+              {favoriteCount === 0 ? (
+                <div>{""}</div>
+              ) : (
+                <div className="absolute w-[20px] h-[20px] top-0 right-2 text-sm rounded-full bg-red-600 text-center text-white">
+                  {favoriteCount}
+                </div>
               )}
-             
+
+              <AiOutlineHeart className="text-3xl cursor-pointer mr-4" />
+            </Link>
+          </div>
+
+          <Link to="/cart">
+            <div className="group relative">
+              <BsCart3 className="text-3xl cursor-pointer mr-4" />
+              {cartCount === 0 ? (
+                ""
+              ) : (
+                <div className="absolute w-[20px] h-[20px] top-0 right-2 text-sm rounded-full bg-red-600 text-center text-white">
+                  {cartCount}
+                </div>
+              )}
             </div>
           </Link>
+
           <CgLogOut
             className="text-2xl cursor-pointer mr-20"
             onClick={logoutHandler}

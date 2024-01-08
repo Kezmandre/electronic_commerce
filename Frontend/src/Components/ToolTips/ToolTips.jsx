@@ -1,12 +1,11 @@
 import React from "react";
+import styles from "./ToolTips.module.css";
 
-const ToolTips = ({ text, children }) => {
+const ToolTips = ({ text, children,top,right }) => {
   return (
-    <div className="relative inline-block">
+    <div className={`relative inline-block ${styles.tooltipContainer}`}>
       {children}
-      <div className="hidden bg-black text-red-800 text-center rounded p-2 absolute z-10 bottom-full left-1/2 transform -translate-x-1/2 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-        {text}
-      </div>
+      <div className={` ${top ? top : ""} ${right ? right : ""} ${styles.tooltip}`} >{text}</div>
     </div>
   );
 };

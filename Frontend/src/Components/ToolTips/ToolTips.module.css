@@ -1,0 +1,16 @@
+.tooltip {
+  display: none;
+  width: 120px;
+  padding: 4px;
+  background-color: black;
+  border-radius: 10px;
+  color: white;
+  position: absolute;
+  right: 20px;
+  top: -15px;
+  cursor: pointer;
+}
+
+.tooltipContainer:hover .tooltip {
+  display: block;
+}
