@@ -17,7 +17,7 @@ import {
   INCREASE_CARTS_SUCCESS,
 } from "../constants/cartsConstant";
 
-const url = "http://localhost:5000";
+
 
 export const addToCartActions = (productId) => async (dispatch, state) => {
   console.log(productId, "iddddd");
@@ -39,7 +39,7 @@ export const addToCartActions = (productId) => async (dispatch, state) => {
     });
 
     const { data } = await axios.post(
-      `${url}/cart`,
+      `/cart`,
       {
         productId,
       },
@@ -81,7 +81,7 @@ export const getCartActions = () => async (dispatch, state) => {
       type: GET_CARTS_REQUEST,
     });
 
-    const { data } = await axios.get(`${url}/cart`, config);
+    const { data } = await axios.get(`/cart`, config);
     console.log(data, "datum");
     dispatch({
       type: GET_CARTS_SUCCESS,
@@ -117,7 +117,7 @@ export const increaseCartAction = (cartId) => async (dispatch, state) => {
       type: INCREASE_CARTS_REQUEST,
     });
     const { data } = await axios.patch(
-      `${url}/cart/${cartId}`,
+      `/cart/${cartId}`,
       { type: "increase" },
       config
     );
@@ -156,7 +156,7 @@ export const decreaseCartAction = (cartId) => async (dispatch, state) => {
       type: DECREASE_CARTS_REQUEST,
     });
     const { data } = await axios.patch(
-      `${url}/cart/${cartId}`,
+      `/cart/${cartId}`,
       { type: "decrease" },
       config
     );
@@ -195,7 +195,7 @@ export const deleteCartAction = (cartId) => async (dispatch, state) => {
       type: DELETE_CARTS_REQUEST,
     });
 
-    const { data } = await axios.delete(`${url}/cart/${cartId}`, config);
+    const { data } = await axios.delete(`/cart/${cartId}`, config);
     dispatch({
       type: DELETE_CARTS_SUCCESS,
       payload: data.payload,

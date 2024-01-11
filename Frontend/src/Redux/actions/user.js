@@ -10,7 +10,7 @@ import {
 } from "../constants";
 import { toast } from "react-toastify";
 
-const url = "http://localhost:5000";
+
 
 
 
@@ -35,7 +35,7 @@ export const loginUserAction = (items) => async (dispatch, state) => {
     });
 
     const { data } = await axios.post(
-      `${url}/users/login`,
+      `/users/login`,
       { email: items.email, password: items.password },
       config
     );
@@ -80,7 +80,7 @@ export const createUserAction = (items) => async (dispatch, state) => {
     });
 
     const { data } = await axios.post(
-      `${url}/users`,
+      `/users`,
       {name:items.name, email: items.email, password: items.password },
       config
     );

@@ -11,7 +11,7 @@ import { useParams } from "react-router-dom";
 
 const {productId}= useParams
 
-const url = "http://localhost:5000";
+
 
 export const getProductActions = () => async(dispatch, state) => {
   const config = {
@@ -25,7 +25,7 @@ export const getProductActions = () => async(dispatch, state) => {
       type: GET_PRODUCTS_REQUEST,
     });
 
-    const { data } = await axios.get(`${url}/product`, config);
+    const { data } = await axios.get(`/product`, config);
     dispatch({
       type: GET_PRODUCTS_SUCCESS,
       payload: data.payload,
@@ -58,7 +58,7 @@ export const singleProductActions=({productId})=>async(dispatch, state)=>{
             type:GET_PRODUCT_REQUEST
         })
 
-        const {data}= await axios.get(`${url}/product/${productId}`,config)
+        const {data}= await axios.get(`/product/${productId}`,config)
         console.log(data, "dataaa")
         dispatch({
             type:GET_PRODUCT_SUCCESS,

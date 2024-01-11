@@ -11,7 +11,7 @@ import {
   GET_FAVORITES_SUCCESS,
 } from "../constants";
 
-const url = "http://localhost:5000";
+
 
 export const addToFavoriteAction = (productId) => async (dispatch, state) => {
   const {
@@ -30,7 +30,7 @@ export const addToFavoriteAction = (productId) => async (dispatch, state) => {
       type: CREATE_FAVORITE_REQUEST,
     });
 
-    const { data } = await axios.post(`${url}/favorite`, { productId }, config);
+    const { data } = await axios.post(`/favorite`, { productId }, config);
 
     dispatch({
       type: CREATE_FAVORITE_SUCCESS,
@@ -66,7 +66,7 @@ export const getAllFavoritesAction = () => async (dispatch, state) => {
       type: GET_FAVORITES_REQUEST,
     });
 
-    const { data } = await axios.get(`${url}/favorite`, config);
+    const { data } = await axios.get(`/favorite`, config);
     dispatch({
       type: GET_FAVORITES_SUCCESS,
       payload: data.payload,
@@ -101,7 +101,7 @@ export const deleteFavoriteAction = (favoriteId) => async (dispatch, state) => {
     dispatch({ type: DELETE_FAVORITE_REQUEST });
 
     const { data } = await axios.delete(
-      `${url}/favorite/${favoriteId}`,
+      `/favorite/${favoriteId}`,
       config
     );
 
