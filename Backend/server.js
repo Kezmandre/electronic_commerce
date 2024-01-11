@@ -7,6 +7,7 @@ import colors from "colors";
 import cors from "cors";
 import { config } from "../Backend/Config/Config.js";
 import { dbConnect } from "./Config/db.js";
+import path from "path"
 
 import userRouter from "./Routes/User.js"
 import productRouter from "./Routes/Product.js";
