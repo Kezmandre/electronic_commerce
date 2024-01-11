@@ -26,12 +26,26 @@ app.use("/product",productRouter)
 app.use("/cart",cartRouter)
 app.use("/order", orderRouter )
 app.use("/favorite", favoriteRoute)
-app.get("/", (req, res) => {
-  res.status(httpStatus.OK).json({
-    status: "success",
-    payload: "Welcome! to Exclusive E-commerce App",
+
+
+
+
+const __dirname = path.resolve();
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "/Frontend/build")));
+
+  app.get("*", (req, res) =>
+    res.sendFile(path.resolve(__dirname, "Frontend", "build", "index.html"))
+  );
+} else {
+  app.get("/", (req, res) => {
+    res.status(httpStatus.OK).json({
+      status: "success",
+      payload: "Welcome! to Exclusive E-commerce App",
+    });
   });
-});
+}
+
 
 app.all("*",(req,res)=>{
     res.status(httpStatus.NOT_FOUND).json({
