@@ -19,16 +19,7 @@ const Navigation = () => {
   const { cartCount } = getCarts;
   const { favoriteCount } = getFavorites;
 
-  // const [cartCount, setCartCount] = useState(carts.length);
-
-  // const totalCartItem = carts.length;
-  // useEffect(() => {
-  //   dispatch(getCartActions());
-
-  //   if (carts.length > 0) {
-  //     setCartCount(carts.length);
-  //   }
-  // }, [dispatch]);
+ 
 
   const logoutHandler = () => {
     dispatch(Logout());

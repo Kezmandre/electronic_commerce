@@ -36,12 +36,12 @@ const About = () => {
             <img src={About_img} alt="" className="w-full h-full bg-cover" />
           </div>
         </div>
-        <div className="w-full flex flex-col gap-6 md:justify-center mb-8 md:flex-row flex-wrap lg:flex-row items-center justify-between my-8 lg:h-[240px]">
+        <div className="flex flex-wrap gap-4 justify-center my-10 lg:flex-nowrap items-center">
           {aboutData.map((item) => {
             return (
               <div
                 key={item.id}
-                className="border shadow-md hover:border-0 hover:bg-[#db4444] hover:text-white rounded-md h-full w-[240px]"
+                className=" w-[200px] lg:w-[300px] border shadow-md hover:border-0 hover:bg-[#db4444] hover:text-white rounded-md h-full "
               >
                 <div className="w-[50px] h-[50px] my-6 relative bg-black rounded-full mx-auto  border-4 border-[grey]">
                   <img
@@ -60,7 +60,7 @@ const About = () => {
             );
           })}
         </div>
-        <div className="w-full lg:h-[400px] gap-4 flex flex-col md:flex-row lg:flex-row justify-between items-center mb-2">
+        <div className="w-full lg:h-[400px] gap-4 flex flex-col md:flex-row lg:flex-row justify-between items-center my-6">
           {profileData.map((item) => {
             return (
               <div className="w-full h-full flex flex-col items-center">

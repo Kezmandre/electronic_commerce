@@ -1,52 +1,59 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {toast} from "react-toastify"
-import { decreaseCartAction, deleteCartAction, getCartActions, increaseCartAction } from "../../Redux/actions/cart";
+import { toast } from "react-toastify";
+import {
+  decreaseCartAction,
+  deleteCartAction,
+  getCartActions,
+  increaseCartAction,
+} from "../../Redux/actions/cart";
 import { DELETE_CARTS_RESET } from "../../Redux/constants/cartsConstant";
+import {MdDelete} from "react-icons/md"
+
+
+
+
 const Carts = () => {
   const dispatch = useDispatch();
-  const { getCarts,updateCart, deleteCart } = useSelector((state) => state);
-  const {success, error}= deleteCart
-  const {cart:qtyUpdate,} = updateCart
-    const {carts} = getCarts
+  const { getCarts, updateCart, deleteCart } = useSelector((state) => state);
+  const { success, error,loading} = deleteCart;
+  const { cart: qtyUpdate } = updateCart;
+  const { carts } = getCarts;
 
-    const increaseCartHandler=(cartId)=>{
-      dispatch(increaseCartAction(cartId))
-      dispatch(getCartActions())
+  const increaseCartHandler = (cartId) => {
+    dispatch(increaseCartAction(cartId));
+    dispatch(getCartActions());
+  };
+  const decreaseCartHandler = (cartId) => {
+    dispatch(decreaseCartAction(cartId));
+    dispatch(getCartActions());
+  };
+  // delete cart items handler
+  const deleteCartHandler = (cartId) => {
+    dispatch(deleteCartAction(cartId));
+  };
+
+  useEffect(() => {
+    if (success) {
+      toast.success("product removed from carts");
+      dispatch({ type: DELETE_CARTS_RESET });
+      dispatch(getCartActions());
     }
-    const decreaseCartHandler=(cartId)=>{
-      dispatch(decreaseCartAction(cartId))
-      dispatch(getCartActions())
+
+    if (error) {
+      toast.error(`${error}`);
+      setTimeout(() => {
+        dispatch({ type: DELETE_CARTS_RESET });
+      }, 3000);
     }
-// delete cart items handler
-    const deleteCartHandler=(cartId)=>{
-        dispatch(deleteCartAction(cartId))
-        
-    }
+  }, [dispatch, success, error]);
 
-    useEffect(()=>{
-      if(success){
-        toast.success("product removed from carts")
-        dispatch({type:DELETE_CARTS_RESET})
-        dispatch(getCartActions())
-      }
+  const totalItems = carts.reduce((total, item) => {
+    return total + item.quantity * (item.product?.price || 0);
+  }, 0);
 
-      if(error){
-        toast.error(`${error}`)
-        setTimeout(()=>{
-          dispatch({type:DELETE_CARTS_RESET})
-        },3000)
-      }
-    },[dispatch,success, error])
-
-    const totalItems = carts.reduce((total, item) => {
-        return total + item.quantity * (item.product?.price || 0);
-      }, 0);
-
-    
-
-      const total = totalItems + 8
-  console.log(carts,"cartssss")
+  const total = totalItems + 8;
+  console.log(carts, "cartssss");
 
   useEffect(() => {
     dispatch(getCartActions());
@@ -66,7 +73,10 @@ const Carts = () => {
                   {carts && carts.length > 0 ? (
                     carts.map((cart) => {
                       return (
-                        <li key={cart._id} class="flex flex-col space-y-3 py-6 text-left sm:flex-row sm:space-x-5 sm:space-y-0">
+                        <li
+                          key={cart._id}
+                          class="flex flex-col space-y-3 py-6 text-left sm:flex-row sm:space-x-5 sm:space-y-0"
+                        >
                           <div class="shrink-0">
                             <img
                               class="h-25 w-25 max-w-full rounded-lg object-cover"
@@ -82,7 +92,7 @@ const Carts = () => {
                                   {cart.product?.title}
                                 </p>
                                 <p class="mx-0 mt-1 mb-0 font-bold text-sm text-gray-800">
-                                  ${cart.product?.price }
+                                  ${cart.product?.price}
                                 </p>
                               </div>
 
@@ -93,42 +103,36 @@ const Carts = () => {
 
                                 <div class="sm:order-1">
                                   <div class="mx-auto flex h-8 items-stretch text-gray-600">
-                                    
-                                    <button onClick={()=>decreaseCartHandler(cart._id)} class="flex items-center justify-center rounded-l-md bg-gray-200 px-4 transition hover:bg-black hover:text-white">
+                                    <button
+                                      onClick={() =>
+                                        decreaseCartHandler(cart._id)
+                                      }
+                                      class="flex items-center justify-center rounded-l-md bg-gray-200 px-4 transition hover:bg-black hover:text-white"
+                                    >
                                       -
                                     </button>
                                     <div class="flex w-full items-center justify-center bg-gray-100 px-4 text-xs uppercase transition">
                                       {cart.quantity}
                                     </div>
-                                    <button onClick={()=>increaseCartHandler(cart._id)} class="flex items-center justify-center rounded-r-md bg-gray-200 px-4 transition hover:bg-black hover:text-white">
+                                    <button
+                                      onClick={() =>
+                                        increaseCartHandler(cart._id)
+                                      }
+                                      class="flex items-center justify-center rounded-r-md bg-gray-200 px-4 transition hover:bg-black hover:text-white"
+                                    >
                                       +
                                     </button>
                                   </div>
                                 </div>
                               </div>
                             </div>
-
                             <div class="absolute top-0 right-0 flex sm:bottom-0 sm:top-auto">
                               <button
-                              onClick={()=>deleteCartHandler(cart._id)}
+                                onClick={() => deleteCartHandler(cart._id)}
                                 type="button"
                                 class="flex rounded p-2 text-center text-red-700 transition-all duration-200 ease-in-out focus:shadow hover:text-red-900"
                               >
-                                <svg
-                                  class="h-5 w-5"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  fill="none"
-                                  viewBox="0 0 24 24"
-                                  stroke="currentColor"
-                                >
-                                  <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M6 18L18 6M6 6l12 12"
-                                    class=""
-                                  ></path>
-                                </svg>
+                               <MdDelete className="text-2xl"/>
                               </button>
                             </div>
                           </div>
@@ -136,7 +140,9 @@ const Carts = () => {
                       );
                     })
                   ) : (
-                    <h2 className="text-center text-3xl font-inter text-red-700 font-bold">Your Cart is Empty</h2>
+                    <h2 className="text-center text-3xl font-inter text-red-700 font-bold">
+                      Your Cart is Empty
+                    </h2>
                   )}
                 </ul>
               </div>
@@ -144,7 +150,9 @@ const Carts = () => {
               <div class="mt-6 border-t border-b py-2">
                 <div class="flex items-center justify-between">
                   <p class="text-sm text-gray-400">Subtotal</p>
-                  <p class="text-lg font-semibold text-gray-900">${totalItems}</p>
+                  <p class="text-lg font-semibold text-gray-900">
+                    ${totalItems}
+                  </p>
                 </div>
                 <div class="flex items-center justify-between">
                   <p class="text-sm text-gray-400">Shipping</p>

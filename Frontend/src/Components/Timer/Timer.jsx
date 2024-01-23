@@ -47,7 +47,7 @@ const Timer = () => {
         <Bar />
         <p className="text-[#db4444] font-poppins font-semibold">Today's</p>
       </div>
-      <div className="flex justify-start gap-12 items-center">
+      <div className=" w-sm lg:w-full flex justify-start  gap-6 lg:gap-12 items-center">
         <p className="font-inter font-semibold text-xl">Flash Sales</p>
         <section className="flex ml-1 flex-col justify-start items-center">
           <p className="font-poppins text-sm">Days</p>

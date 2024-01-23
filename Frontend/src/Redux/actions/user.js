@@ -10,10 +10,7 @@ import {
 } from "../constants";
 import { toast } from "react-toastify";
 
-
-
-
-
+const Base_url = process.env.NODE_ENV === "production" ? "" : "http://localhost:5000"
 export const Logout=()=>async(dispatch, state)=>{
   dispatch({
     type:LOGIN_USER_RESET
@@ -35,7 +32,7 @@ export const loginUserAction = (items) => async (dispatch, state) => {
     });
 
     const { data } = await axios.post(
-      `/users/login`,
+      `${Base_url}/users/login`,
       { email: items.email, password: items.password },
       config
     );

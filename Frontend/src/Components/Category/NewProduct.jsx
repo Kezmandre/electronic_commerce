@@ -28,13 +28,13 @@ const NewProduct = () => {
     },
   ];
   return (
-    <div className="w-full h-[500px] mx-auto">
-      <div className="w-full bg-black h-full border">
+    <div className="w-full  mx-auto">
+      <div className="w-full bg-black  border">
         <div className="w-[90%] h-5/6  mx-auto my-8">
           <p className="text-[#0f6] font-poppins font-semibold text-xl pb-6">
             Categories
           </p>
-          <div className="flex justify-center items-center gap-2">
+          <div className="flex flex-col-reverse lg:flex-row justify-center items-center gap-2">
             <div className="basis-3/6 h-[400px]">
               <p className="font-inter font-semibold tracking-wide text-6xl pb-8 text-white">
                 Enhance Your Music Experience

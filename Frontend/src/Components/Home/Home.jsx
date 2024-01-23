@@ -26,7 +26,7 @@ const Home = () => {
   return (
     <div className='m-0 p-0 border-box'>
       <div className='w-5/6 mx-auto mt-4 mb-14 cursor-pointer gap-6 flex justify-between'>
-        <div className='w-[200px] h-[280px] font-poppins border-r-2'>
+        <div className='hidden lg:flex w-[200px] h-[280px] font-poppins border-r-2'>
           <div className='w-5/6 mx-auto'>
             <div className='flex items-center justify-between mb-2'>
               <p>Women's Fashion</p>
@@ -47,7 +47,7 @@ const Home = () => {
             </ul>
           </div>
         </div>
-        <div className='grow h-[260px] bg-black'>
+        <div className='w-sm mx-auto lg:grow h-[290px] bg-black'>
           <div className='flex bg-black w-full h-full'>
           <div className='w-2/5 mx-auto h-full  bg-black'>
             <div className='my-8 flex justify-start text-white items-center gap-3'>
@@ -60,7 +60,7 @@ const Home = () => {
               <BsArrowRightShort className='text-3xl'/>
             </div>
           </div>
-          <div className='w-[300px] mx-auto h-[260px] border-6 border-red-400 full bg-black'>
+          <div className=' w-[250px] lg:w-[300px] mx-auto h-[240px] lg:h-[260px] border-6 border-red-400 full bg-black'>
             <img src={slides[currentIndex]} className='w-full h-full' alt="" />
           </div>
           </div>
@@ -75,13 +75,13 @@ const Home = () => {
         </div>
       </div>
       <div className='w-[80%] mx-auto'>
-      <div className='mb-10'>
+      <div className='w-[50%] mb-4'>
       <Timer/>
       </div>
       <div className='my-4 w-full'>
         <Product />
       </div>
-      <div className=' mt-4'>
+      <div className=' mt-4 w-full'>
         <Category />
       </div>
       <div className=' my-10'>
