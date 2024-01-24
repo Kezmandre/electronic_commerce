@@ -15,8 +15,8 @@ const Modal = () => {
 
 
   return (
-    <div className="fixed top-0 left-0 w-screen overflow-hidden h-screen z-10 bg-white">
-      <div className="w-8/12 h-full relative shadow-2xl rounded-md overflow-scroll mx-auto bg-white mt-20 mb-8">
+    <div className="fixed top-0 left-0 w-screen overflow-hidden z-10 bg-white">
+      <div className="w-9/12 h-screen relative shadow-2xl rounded-md overflow-y-scroll mx-auto bg-white mt-20 mb-8">
         <section class="py-12 sm:py-16">
           <div class="container mx-auto px-4">
             <nav class="flex">
@@ -312,7 +312,7 @@ const Modal = () => {
                   </nav>
                 </div>
 
-                <div class="mt-8 flow-root sm:mt-12">
+                <div class="my-8 flow-root sm:mt-12">
                   <h1 class="text-3xl font-bold">Delivered To Your Door</h1>
                   <p class="mt-4 font-poppins font-semibold">
                     24/7 delivery, putting a smile on our customers face
@@ -320,8 +320,8 @@ const Modal = () => {
                   <h1 class="mt-8 text-3xl font-bold">
                     {product ? product.title : ""}
                   </h1>
-                  <p class="mt-4 font-semibold font-poppins">Boss the game with the right controller</p>
-                  <p class="mt-4 mb-6 font-poppins text-sm font-medium italic">{product ? product.description : ""}</p>
+                  <p class="pt-4 font-semibold font-poppins">Boss the game with the right controller</p>
+                  <p class="pt-4 pb-6 font-poppins text-sm font-medium italic">{product ? product.description : ""}</p>
                 </div>
               </div>
             </div>

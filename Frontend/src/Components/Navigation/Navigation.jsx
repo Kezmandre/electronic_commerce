@@ -19,8 +19,6 @@ const Navigation = () => {
   const { cartCount } = getCarts;
   const { favoriteCount } = getFavorites;
 
- 
-
   const logoutHandler = () => {
     dispatch(Logout());
   };
@@ -33,7 +31,9 @@ const Navigation = () => {
   return (
     <>
       <nav className="m-0 p-4 sticky top-0 z-50 bg-white box-border flex-wrap border-b-2 justify-between md:justify-evenly flex lg:justify-evenly items-center ">
-        <p className="pr-12 font-inter font-bold  text-2xl">Exclusive</p>
+        <p className="pr-12 font-inter font-bold text-xl lg:text-3xl">
+          Exclusive
+        </p>
         <ul className="hidden md:flex lg:flex justify-center items-center gap-8  ">
           {navItems.map((item) => {
             return (
@@ -72,7 +72,7 @@ const Navigation = () => {
           </div>
 
           <Link to="/cart">
-            <div className="group relative">
+            <div className="group relative mr-8">
               <BsCart3 className="text-3xl cursor-pointer mr-4" />
               {cartCount === 0 ? (
                 ""
@@ -85,7 +85,7 @@ const Navigation = () => {
           </Link>
 
           <CgLogOut
-            className="text-2xl cursor-pointer mr-20"
+            className=" hidden lg:flex text-2xl cursor-pointer mr-20"
             onClick={logoutHandler}
           />
         </div>
@@ -116,13 +116,16 @@ const Navigation = () => {
                 );
               })}
             </ul>
-            <div className="  flex justify-center rounded-md m-12 bg-searchBg items-center border-1 h-10 w-[300px] border-black">
+            <div className=" flex justify-center rounded-md m-12 bg-searchBg items-center border-1 h-10 w-[300px] border-black">
               <input
                 type="text"
                 className="w-full p-2 text-poppins bg-searchBg outline-none"
                 placeholder="what are you looking for?"
               />
               <BiSearch className="text-2xl " />
+            </div>
+            <div onClick={logoutHandler} className="font-poppins ml-12 my-4 text-lg text-white hover:w-[150px] hover:rounded-md font-medium hover:text-black hover:cursor-pointer hover:duration-500 hover:bg-searchBg hover:ease-in-out hover:text-xl">
+              LogOut
             </div>
           </div>
         ) : (

@@ -7,7 +7,7 @@ const Services = () => {
     {infoData.map((item) => {
       return (
         <div key={item.id} className=" h-full w-[250px]">
-          <div className="w-[60px] h-[60px] my-6 relative bg-black rounded-full mx-auto my-2 border-4 border-[grey]">
+          <div className="w-[60px] h-[60px] my-6 relative bg-black rounded-full mx-auto  border-4 border-[grey]">
             <img
               src={item.img}
               alt=""

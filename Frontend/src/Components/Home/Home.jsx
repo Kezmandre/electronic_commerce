@@ -47,9 +47,9 @@ const Home = () => {
             </ul>
           </div>
         </div>
-        <div className='w-sm mx-auto lg:grow h-[290px] bg-black'>
+        <div className='w-full mx-auto lg:grow h-[290px] bg-black'>
           <div className='flex bg-black w-full h-full'>
-          <div className='w-2/5 mx-auto h-full  bg-black'>
+          <div className='hidden w-2/5 mx-auto h-full  bg-black'>
             <div className='my-8 flex justify-start text-white items-center gap-3'>
               <AiOutlineApple className='text-4xl'/>
               <p className='font-poppins text-[#fafafa]'>Iphone 14 series</p>

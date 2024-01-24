@@ -9,7 +9,7 @@ const Footer = () => {
     const date = new Date()
   return (
     <>
-   <footer className='flex justify-evenly flex-col md:flex-row lg:flex-row flex-wrap items-right p-4 bg-black text-white p-4'>
+   <footer className='flex justify-evenly flex-col md:flex-row lg:flex-row flex-wrap items-right  bg-black text-white p-4'>
     <div className='m-4'>
         <h2 className='text-2xl font-inter font-bold  pb-2'>Exclusive</h2>
         <p className='py-2 font-poppins text-textColor text-sm'>Subscribe</p>

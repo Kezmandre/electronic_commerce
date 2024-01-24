@@ -14,7 +14,7 @@ const Selling = () => {
         </p>
       </div>
 
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center my-6">
         <p className="font-inter font-semibold text-2xl">
           Best Selling Product
         </p>
@@ -22,7 +22,7 @@ const Selling = () => {
           View All
         </div>
       </div>
-      <div className="w-[230px] h-[350px] mb-12">
+      <div className="w-[230px] h-[350px] mt-8 mb-12">
       <div className=" group w-full h-[250px] bg-[#f5f5f5]">
         <div className="flex justify-end items-center">
           <div className="flex flex-col  m-2 gap-2 ">
