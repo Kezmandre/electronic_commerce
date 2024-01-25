@@ -1,6 +1,6 @@
 import express from "express";
 import validateMiddle from "../Middleware/Validation.js";
-import { LoginSchema, userSchema } from "../Controller/Users/UserSchema.js";
+import { LoginSchema, UserSchema } from "../Controller/Users/UserSchema.js";
 import {
   createUser,
   deleteUser,
@@ -13,7 +13,7 @@ import { Authorized, userVerification } from "../Middleware/Auth.js";
 
 const router = express.Router();
 
-router.route("/").post(validateMiddle(userSchema), createUser).get(getUsers);
+router.route("/").post(validateMiddle(UserSchema),createUser).get(getUsers);
 router
   .route("/:id")
   .get(userVerification, Authorized(["default", "admin"]), getUser)

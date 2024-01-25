@@ -15,7 +15,7 @@ const Category = () => {
       <div className="flex flex-wrap lg:flex-nowrap overflow-x-auto overflow-y-hidden justify-center items-center gap-4 mt-4 mb-4">
         {category?.map((cat) => {
           return (
-            <div key={cat.id} className="cursor-pointer w-[200px] lg:w-[250px] h-[200px] hover:text-white hover:bg-[#bd4444] rounded-md shadow-xl mt-4">
+            <div key={cat.id} className="cursor-pointer w-[150px] md:w-[200px] lg:w-[250px] h-[200px] hover:text-white hover:bg-[#bd4444] rounded-md shadow-xl mt-4">
               <div className="w-[70px] h-[70px]  mx-auto my-4">
                 <img src={cat.img} alt="" className="w-full h-full pt-2" />
               </div>

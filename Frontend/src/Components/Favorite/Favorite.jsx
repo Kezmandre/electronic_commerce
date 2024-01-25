@@ -77,26 +77,26 @@ const Favorite = () => {
               >
                 <img
                   className="bg-cover w-[200px] h-[200px] mx-auto my-8"
-                  src={fav.product.imageUrl}
+                  src={fav.product?.imageUrl}
                   alt="product image"
                 />
                 <span className="absolute top-0 left-0 m-2 rounded-full bg-black px-2 text-center text-sm font-medium text-white">
-                  {fav.product.discountedPercentage}% OFF
+                  {fav.product?.discountedPercentage}% OFF
                 </span>
               </a>
               <div className="mt-4 px-5 pb-5">
                 <a href="#">
                   <h5 className="text-xl font-semibold tracking-tight text-slate-900">
-                    {fav.product.title}
+                    {fav.product?.title}
                   </h5>
                 </a>
                 <div className="mt-2 mb-5 flex items-center justify-between">
                   <p>
                     <span className="text-3xl font-bold text-slate-900">
-                      ${fav.product.price}
+                      ${fav.product?.price}
                     </span>
                     <span className="text-sm text-slate-900 line-through">
-                      ${fav.product.discountedPrice}
+                      ${fav.product?.discountedPrice}
                     </span>
                   </p>
                   <div className="flex items-center">

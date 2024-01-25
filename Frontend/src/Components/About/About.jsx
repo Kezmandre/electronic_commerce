@@ -41,7 +41,7 @@ const About = () => {
             return (
               <div
                 key={item.id}
-                className=" w-[200px] lg:w-[300px] border shadow-md hover:border-0 hover:bg-[#db4444] hover:text-white rounded-md h-full "
+                className=" w-[200px] md:w-[300px] border shadow-md hover:border-0 hover:bg-[#db4444] hover:text-white rounded-md h-full "
               >
                 <div className="w-[50px] h-[50px] my-6 relative bg-black rounded-full mx-auto  border-4 border-[grey]">
                   <img
@@ -64,7 +64,7 @@ const About = () => {
           {profileData.map((item) => {
             return (
               <div className="w-full h-full flex flex-col items-center">
-                <div className="w-[250px] h-[250px] mb-4 bg-searchBg">
+                <div className="w-[230px] h-[250px] mb-4 bg-searchBg">
                   <img src={item.img} alt="" className="w-full h-full" />
                 </div>
                 <p className="font-bold font-inter pb-2">{item.name}</p>

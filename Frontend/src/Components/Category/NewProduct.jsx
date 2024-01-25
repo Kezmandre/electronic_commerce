@@ -39,7 +39,7 @@ const NewProduct = () => {
               <p className="font-inter font-semibold text-center tracking-wide text-3xl lg:text-6xl pb-8 text-white">
                 Enhance Your Music Experience
               </p>
-              <div className="flex justify-start items-center gap-4 mb-8">
+              <div className="flex  justify-center items-center gap-4 mb-8">
                 {data?.map((item) => {
                   return (
                     <div

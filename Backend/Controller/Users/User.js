@@ -4,7 +4,7 @@ import { uniqueCode } from "../../Utility/uniqueCode.js";
 import bcryptjs from "bcryptjs";
 import { generateToken } from "../../Utility/jwt-token.js";
 import userModel from "../../Model/User.js";
-import cartModel from "../../Model/Cart.js";
+
 
 export const createUser = async (req, res) => {
   const { name, email, password } = req.body;
@@ -14,7 +14,7 @@ export const createUser = async (req, res) => {
     if (userExist) {
       res.status(httpStatus.CONFLICT).json({
         status: "error",
-        payload: "User with the email already exist",
+        message: "User with the email already exist",
       });
       return;
     }
@@ -55,7 +55,7 @@ export const userLogin = async (req, res) => {
     if (!decodePassword) {
       res.status(httpStatus.FORBIDDEN).json({
         status: "error",
-        payload: "credentials does not match",
+        message: "credentials does not match",
       });
       return;
     }

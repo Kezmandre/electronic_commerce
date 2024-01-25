@@ -25,7 +25,7 @@ const Arrivals = () => {
                 </div>
             </div>
             <div className='flex flex-col basis-1/2 h-full gap-4'>
-                <div className='w-full h-[210px] bg-black  rounded-md'>
+                <div className='w-full h-[200px] bg-black  rounded-md'>
                     <div className='w-[95%] flex text-white justify-between items-center mx-auto h-5/6 my-6'>
                         <div className='basis 1/2'>
                             <p className='font-inter pb-2 text-2xl font-semibold'>Women's Collections</p>
@@ -38,7 +38,7 @@ const Arrivals = () => {
                     </div>
                 </div>
                 <div className='w-full h-1/2 flex justify-center items-center gap-4'>
-                    <div className='w-1/2 h-[280px] bg-black rounded-md'>
+                    <div className='w-1/2 h-[250px] bg-black rounded-md'>
                         <div className=' relative w-5/6 h-5/6 mx-auto my-6'>
                             <img src={JBL} alt="" className='w-full h-full'/>
                             <div className='absolute text-white bottom-4 w-[150px] h-[100px]'>
@@ -48,7 +48,7 @@ const Arrivals = () => {
                             </div>
                         </div>
                     </div>
-                    <div className='w-1/2 h-[280px] bg-black rounded-md'>
+                    <div className='w-1/2 h-[250px] bg-black rounded-md'>
                     <div className=' relative w-5/6 h-5/6 mx-auto my-6'>
                             <img src={Perfume} alt="" className='w-full h-full'/>
                             <div className='absolute text-white bottom-4 w-[150px] h-[100px]'>

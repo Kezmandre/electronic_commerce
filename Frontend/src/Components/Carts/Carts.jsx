@@ -9,6 +9,7 @@ import {
 } from "../../Redux/actions/cart";
 import { DELETE_CARTS_RESET } from "../../Redux/constants/cartsConstant";
 import {MdDelete} from "react-icons/md"
+import { Link } from "react-router-dom";
 
 
 
@@ -62,7 +63,10 @@ const Carts = () => {
     <section class=" bg-gray-100 py-8">
       <div class="mx-auto px-4">
         <div class="flex items-center justify-start ml-8">
-          <h1 class="text-sm  font-semibold text-gray-900">Home/Cart</h1>
+          <Link to="/">
+          <h1 class="text-md font-semibold text-gray-900">Home/</h1>
+          </Link>
+          <h1 className="text-md font-semibold text-gray-900">Cart</h1>
         </div>
 
         <div class="mx-auto mt-4 max-w-3xl md:mt-6">

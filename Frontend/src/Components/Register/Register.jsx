@@ -6,12 +6,14 @@ import { Link, useNavigate } from "react-router-dom";
 import {useSelector,useDispatch} from "react-redux"
 import { createUserAction } from "../../Redux/actions/user";
 import { CREATE_USER_RESET } from "../../Redux/constants";
+import Spinner from "../Spinner/Spinner";
+
 
 const Register = () => {
   const dispatch = useDispatch()
   const navigate= useNavigate()
   const {createUser}= useSelector((state)=>state)
-  const {user,error,success}=createUser
+  const {error,success,loading}=createUser
 
 
   const initialValue = {
@@ -52,13 +54,13 @@ const Register = () => {
   },[success,error])
   return (
     <div className="m-0 p-0 border-box">
-      <div className="w-10/12 h-screen mx-12  flex justify-center item-center">
-        <div className="flex-grow my-6 hidden md:flex lg:flex">
+      <div className="w-10/12  mx-12  flex justify-center item-center">
+        <div className="flex-grow my-6 hidden lg:flex">
           <img src={signUp_img} alt="" className="w-full h-full" />
         </div>
         <div className="w-[400px] h-[500px]  my-auto ml-4">
           <div className="w-10/12  h-full mx-auto my-2">
-            <p className="font-inter text-left font-bold tracking-wider text-lg md:text-xl lg:text-2xl  pb-4">
+            <p className="font-inter text-left font-bold tracking-wider text-lg md:text-xl lg:text-2xl  py-4">
               Create an Account
             </p>
             <p className="font-poppins text-left text-sm pb-8">
@@ -94,12 +96,17 @@ const Register = () => {
                 className="w-full p-2 border-b-2 border-[grey] outline-none font-poppins"
               />
             </div>
-            <button onClick={createUserHandler} className="w-full bg-[#db4444] hover:bg-red-300  rounded-md mb-2 p-2">
+            {loading ? (
+              <Spinner/>
+            ) : (
+              <button onClick={createUserHandler} className="w-full bg-[#db4444] hover:bg-red-300  rounded-md mb-2 p-2">
               <p className="text-center font-poppins text-white">
                 Create an Account
               </p>
             </button>
-            <div className="flex justify-center gap-2 cursor-pointer items-center w-full p-2 border-[1px] border-[grey] rounded-md mb-2 ">
+            )}
+            
+            <div className="flex justify-center gap-2 mt-2 cursor-pointer items-center w-full p-2 border-[1px] border-[grey] rounded-md mb-2 ">
               <FcGoogle className="text-2xl" />
               <p className="font-poppins font-medium text-[grey] text-base">
                 Sign up with Goggle

@@ -77,7 +77,7 @@ export const createUserAction = (items) => async (dispatch, state) => {
     });
 
     const { data } = await axios.post(
-      `/users`,
+      `${Base_url}/users`,
       {name:items.name, email: items.email, password: items.password },
       config
     );
@@ -91,8 +91,8 @@ export const createUserAction = (items) => async (dispatch, state) => {
 
     localStorage.setItem("createUserInfo", JSON.stringify(createUserInfo))
   } catch (error) {
-    let errMessage =
-      error.response && error.response.data.error
+    let message =
+      error.response && error.response.data.errors
         ? error.response.data.errors.join(",")
         : error.response && error.response.data.message
         ? error.response.data.message
@@ -100,7 +100,7 @@ export const createUserAction = (items) => async (dispatch, state) => {
 
     dispatch({
       type: CREATE_USER_ERROR,
-      payload: errMessage,
+      payload: message,
     });
   }
 };

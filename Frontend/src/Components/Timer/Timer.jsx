@@ -9,7 +9,7 @@ const Timer = () => {
 
   let interval = useRef();
   const startTimer = () => {
-    const flashDate = new Date("Jan 12 2024 00:00:00").getTime();
+    const flashDate = new Date("Feb 22 2024 00:00:00").getTime();
     interval = setInterval(() => {
       const now = new Date().getTime();
       const variance = flashDate - now;
@@ -47,26 +47,26 @@ const Timer = () => {
         <Bar />
         <p className="text-[#db4444] font-poppins font-semibold">Today's</p>
       </div>
-      <div className=" w-[350px] flex-wrap lg:w-full flex justify-start  gap-6 lg:gap-12 items-center">
+      <div className=" w-[350px]  flex-wrap md:w-full md:flex-nowrap flex justify-start  gap-6 lg:gap-12 items-center">
         <p className="font-inter font-semibold text-xl">Flash Sales</p>
         <section className="flex ml-1 flex-col justify-start items-center">
           <p className="font-poppins text-sm">Days</p>
-          <p className="font-inter font-semibold">{days}</p>
+          <p className="font-inter text-sm font-semibold">{days}</p>
         </section>
         <span className="text-[#db4444] text-xl font-semibold">:</span>
         <section className="flex ml-1 flex-col justify-start items-center">
           <p className="font-poppins text-sm">Hours</p>
-          <p className="font-inter font-semibold">{hours}</p>
+          <p className="font-inter text-sm font-semibold">{hours}</p>
         </section>
         <span className="text-[#db4444] text-xl font-semibold">:</span>
         <section className="flex ml-1 flex-col justify-start items-center">
           <p className="font-poppins text-sm">Minutes</p>
-          <p className="font-inter font-semibold">{minutes}</p>
+          <p className="font-inter text-sm font-semibold">{minutes}</p>
         </section>
         <span className="text-[#db4444] text-xl font-semibold">:</span>
         <section className="flex ml-1 flex-col justify-start items-center">
           <p className="font-poppins text-sm">Seconds</p>
-          <p className="font-inter font-semibold">{seconds}</p>
+          <p className="font-inter text-sm font-semibold">{seconds}</p>
         </section>
       </div>
     </div>

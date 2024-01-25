@@ -83,11 +83,12 @@ const Navigation = () => {
               )}
             </div>
           </Link>
-
-          <CgLogOut
-            className=" hidden lg:flex text-2xl cursor-pointer mr-20"
+          <div
             onClick={logoutHandler}
-          />
+            className="hidden lg:flex bg-red-600 text-white rounded-md shadow-md hover:bg-red-500 p-1 cursor-pointer mr-10"
+          >
+            Logout
+          </div>
         </div>
         <div className="absolute top-[18px] right-4 md:hidden lg:hidden cursor-pointer">
           <HiMenuAlt3 className="text-3xl" onClick={showSidebar} />
@@ -124,7 +125,10 @@ const Navigation = () => {
               />
               <BiSearch className="text-2xl " />
             </div>
-            <div onClick={logoutHandler} className="font-poppins ml-12 my-4 text-lg text-white hover:w-[150px] hover:rounded-md font-medium hover:text-black hover:cursor-pointer hover:duration-500 hover:bg-searchBg hover:ease-in-out hover:text-xl">
+            <div
+              onClick={logoutHandler}
+              className="font-poppins ml-12 my-4 text-lg text-white hover:w-[150px] hover:rounded-md font-medium hover:text-black hover:cursor-pointer hover:duration-500 hover:bg-searchBg hover:ease-in-out hover:text-xl"
+            >
               LogOut
             </div>
           </div>

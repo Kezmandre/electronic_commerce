@@ -80,9 +80,9 @@ const Product = () => {
     dispatch(getAllFavoritesAction());
   }, []);
   return (
-    <div className="flex overflow-x-scroll overflow-y-hidden w-full h-[500px] gap-8 justify-start items-center mb-20">
+    <div className="flex overflow-x-auto overflow-y-hidden w-full h-[500px] gap-8 justify-start items-center mb-20">
       {isModalOpen && <Modal />}
-      {product?.slice(0, 4).map((item) => {
+      {product?.slice(0, 5).map((item) => {
         return (
           <div key={item._id} className="w-[225px] h-[250px] mb-14 ">
             <div className=" group w-[225px] h-[250px] border border-gray-100 shadow-md bg-[#f5f5f5]">
