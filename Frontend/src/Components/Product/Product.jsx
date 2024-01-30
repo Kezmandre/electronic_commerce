@@ -118,7 +118,6 @@ const Product = () => {
                   onClick={() => openModalHandler(item._id)}
                 />
               </div>
-              {loading}
               <div
                 onClick={() => addToCartHandler(item._id)}
                 className="w-full hidden group-hover:block p-2 font-poppins text-white text-center cursor-pointer bg-black"

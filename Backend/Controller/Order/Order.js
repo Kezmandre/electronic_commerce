@@ -1,5 +1,6 @@
 import httpStatus from "http-status";
 import Order from "../../Model/Order.js";
+import { uniqueCode } from "../../Utility/uniqueCode.js";
 
 export const CreateOrder = async (req, res) => {
   const { userId, address, totalPrice, items, phoneNumber } = req.body;
@@ -21,6 +22,7 @@ export const CreateOrder = async (req, res) => {
       totalPrice: totalPrice,
       phoneNumber: phoneNumber,
       items: items,
+      orderId:uniqueCode(6)
     });
 
     res.status(httpStatus.CREATED).json({
