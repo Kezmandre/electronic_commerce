@@ -81,9 +81,9 @@ const Carts = () => {
                           key={cart._id}
                           class="flex flex-col space-y-3 py-6 text-left sm:flex-row sm:space-x-5 sm:space-y-0"
                         >
-                          <div class="shrink-0">
+                          <div class=" w-[200px] shrink-0">
                             <img
-                              class="h-25 w-25 max-w-full rounded-lg object-cover"
+                              class="h-20 w-25 max-w-full rounded-lg object-cover"
                               src={cart.product?.imageUrl}
                               alt=""
                             />

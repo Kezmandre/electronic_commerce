@@ -47,36 +47,6 @@ const Selling = () => {
   };
 
   useEffect(() => {
-    if (favoriteSuccess) {
-      toast.success(" Product added To Favorites");
-      dispatch({ type: CREATE_FAVORITE_RESET });
-      dispatch(getAllFavoritesAction())
-    }
-
-    if (favoriteError) {
-      toast.warn(`${favoriteError}`);
-      setTimeout(() => {
-        dispatch({ type: CREATE_FAVORITE_RESET });
-      }, 3000);
-    }
-  }, [favoriteSuccess, favoriteError]);
-
-  useEffect(() => {
-    if (cartSuccess) {
-      toast.success("Product added to cart");
-      dispatch({ type: CREATE_CARTS_RESET });
-      dispatch(getCartActions());
-    }
-
-    if (cartError) {
-      toast.warn(`${cartError}`);
-      setTimeout(() => {
-        dispatch({ type: CREATE_CARTS_RESET });
-      }, 3000);
-    }
-  }, [cartSuccess, cartError]);
-  // get all products
-  useEffect(() => {
     dispatch(getProductActions());
     dispatch(getCartActions());
     dispatch(getAllFavoritesAction());

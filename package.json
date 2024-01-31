@@ -7,7 +7,7 @@
   "scripts": {
     "start:prod": "node Backend/server.js",
     "start:dev": "nodemon Backend/server.js",
-    "client":"npm start --prefix Frontend",
+    "client": "npm start --prefix Frontend",
     "dev": "concurrently \"npm run client\" \"npm run start:dev\""
   },
   "repository": {

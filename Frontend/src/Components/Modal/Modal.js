@@ -3,10 +3,13 @@ import { closeModalAction } from "../../Redux/actions/modal";
 import { useDispatch, useSelector } from "react-redux";
 import { singleProductActions } from "../../Redux/actions/product";
 import { addToCartActions } from "../../Redux/actions/cart";
+import { CiHeart } from "react-icons/ci";
+import { addToFavoriteAction } from "../../Redux/actions/favorite";
+import {motion} from "framer-motion"
 const Modal = () => {
   const dispatch = useDispatch();
   const { getProduct } = useSelector((state) => state);
-  const { product } = getProduct;
+  const { product, loading} = getProduct;
   console.log(product, "productssssssssssss")
   const closeHandler = () => {
     dispatch(closeModalAction());
@@ -16,7 +19,11 @@ const Modal = () => {
 
   return (
     <div className="fixed top-0 left-0 w-screen overflow-hidden z-10 bg-white">
-      <div className="w-9/12 h-screen relative shadow-2xl rounded-md overflow-y-scroll mx-auto bg-white mt-20 mb-8">
+      <motion.div 
+        initial={{x:"-100vw"}}
+        animate={{ x:0 }}
+        transition={{duration:1 , delay:0.5, ease : 'easeInOut'}}
+      className="w-9/12 h-screen relative shadow-2xl rounded-md overflow-y-scroll mx-auto bg-white mt-20 mb-8">
         <section class="py-12 sm:py-16">
           <div class="container mx-auto px-4">
             <nav class="flex">
@@ -221,28 +228,60 @@ const Modal = () => {
                     </p>
                   </label>
                 </div>
-                <div class="mt-10 flex flex-col items-center justify-between space-y-4 border-t border-b py-4 sm:flex-row sm:space-y-0">
-                  <button
-                  onClick={()=>dispatch(addToCartActions(product._id))}
-                    type="button"
-                    class="inline-flex items-center justify-center rounded-md border-2 border-transparent bg-gray-900 bg-none px-12 py-3 text-center text-base font-bold text-white transition-all duration-200 ease-in-out focus:shadow hover:bg-gray-800"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      class="shrink-0 mr-3 h-5 w-5"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      stroke-width="2"
+                <div class="mt-10 flex flex-col items-center justify-between space-y-4 border-t border-b py-4  gap-4 sm:space-y-0">
+                  {loading ? (
+                    <button
+                    
+                      type="button"
+                      class="inline-flex items-center justify-center rounded-md border-2 border-transparent bg-gray-900 bg-none px-12 py-3 text-center text-base font-bold text-white transition-all duration-200 ease-in-out focus:shadow hover:bg-gray-800"
                     >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
-                      />
-                    </svg>
-                    Add to cart
-                  </button>
+                      {/* <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="shrink-0 mr-3 h-5 w-5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        stroke-width="2"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+                        />
+                      </svg> */}
+                      Loading....
+                    </button>
+                  ):(
+                    <button
+                    onClick={()=>dispatch(addToCartActions(product._id))}
+                      type="button"
+                      class="inline-flex items-center justify-center rounded-md border-2 border-transparent bg-gray-900 bg-none px-12 py-3 text-center text-base font-bold text-white transition-all duration-200 ease-in-out focus:shadow hover:bg-gray-800"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="shrink-0 mr-3 h-5 w-5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        stroke-width="2"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+                        />
+                      </svg>
+                      Add to cart
+                    </button>
+                  )}
+                 <button
+                    onClick={()=>dispatch(addToFavoriteAction(product._id))}
+                      type="button"
+                      class="inline-flex items-center  gap-2 justify-center rounded-md border-2 border-transparent bg-gray-900 bg-none px-12 py-3 text-center text-base font-bold text-white transition-all duration-200 ease-in-out focus:shadow hover:bg-gray-800"
+                    >
+                     <CiHeart className="text-2xl"/>
+                      Add to Favorite
+                    </button>
                 </div>
 
                 <ul class="mt-8 space-y-2">
@@ -333,7 +372,7 @@ const Modal = () => {
         >
           X
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

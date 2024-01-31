@@ -36,7 +36,7 @@ const Login = () => {
     if (success) {
       toast.success(`welcome back ${user.name}`);
       setTimeout(() => {
-        navigate("/about");
+        navigate("/");
       }, 5000);
     }
 

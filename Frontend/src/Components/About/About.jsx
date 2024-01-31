@@ -4,6 +4,7 @@ import { aboutData, profileData } from "../Data/Data";
 import { RiTwitterXFill, RiLinkedinLine } from "react-icons/ri";
 import Services from "./Services";
 import { FaInstagram } from "react-icons/fa";
+import Reveal from "../Reveal/Reveal";
 const About = () => {
   return (
     <div className="p-0 m-0 border-box">
@@ -13,6 +14,7 @@ const About = () => {
             Home/ <span className="text-black">About</span>
           </p>
         </div>
+        <Reveal>
         <div className="flex flex-col md:flex-row lg:flex-row mb-6 justify-center md:gap-6 lg:gap-8 items-center">
           <div className="h-[300px] w-[100%] md:w-[50%] lg:w-[40%]">
             <h2 className="font-inter tracking-wide pb-4 text-2xl font-bold">
@@ -36,7 +38,9 @@ const About = () => {
             <img src={About_img} alt="" className="w-full h-full bg-cover" />
           </div>
         </div>
-        <div className="flex flex-wrap gap-4 justify-center my-10 lg:flex-nowrap items-center">
+        </Reveal>
+       <Reveal>
+       <div className="flex flex-wrap gap-4 justify-center my-10 lg:flex-nowrap items-center">
           {aboutData.map((item) => {
             return (
               <div
@@ -60,7 +64,10 @@ const About = () => {
             );
           })}
         </div>
-        <div className="w-full lg:h-[400px] gap-4 flex flex-col md:flex-row lg:flex-row justify-between items-center my-6">
+       </Reveal>
+       
+       <Reveal>
+       <div className="w-full lg:h-[400px] gap-4 flex flex-col md:flex-row lg:flex-row justify-between items-center my-6">
           {profileData.map((item) => {
             return (
               <div className="w-full h-full flex flex-col items-center">
@@ -78,7 +85,11 @@ const About = () => {
             );
           })}
         </div>
-        <Services />
+       </Reveal>
+       <Reveal>
+       <Services />
+       </Reveal>
+       
       </div>
     </div>
   );

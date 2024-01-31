@@ -16,19 +16,19 @@ const Router = () => {
       <Route
         path="/"
         element={
-          <Layout>
-            <HomePage />
-          </Layout>
+          <ProtectedRoute>
+            <Layout>
+              <HomePage />
+            </Layout>
+          </ProtectedRoute>
         }
       />
       <Route
         path="/about"
         element={
-          <ProtectedRoute>
-            <Layout>
-              <AboutPage />
-            </Layout>
-          </ProtectedRoute>
+          <Layout>
+            <AboutPage />
+          </Layout>
         }
       />
       <Route
@@ -64,7 +64,14 @@ const Router = () => {
           </Layout>
         }
       />
-      <Route path="/favorite" element={<Layout><FavoritePage/></Layout>}/>
+      <Route
+        path="/favorite"
+        element={
+          <Layout>
+            <FavoritePage />
+          </Layout>
+        }
+      />
     </Routes>
   );
 };
