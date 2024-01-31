@@ -170,8 +170,8 @@ const Carts = () => {
                   {total}
                 </p>
               </div>
-
-              <div class="mt-6 text-center">
+                <Link to="/checkout">
+                <div class="mt-6 text-center">
                 <button
                   type="button"
                   class="group inline-flex w-full items-center justify-center rounded-md bg-gray-900 px-6 py-4 text-lg font-semibold text-white transition-all duration-200 ease-in-out focus:shadow hover:bg-gray-800"
@@ -193,6 +193,8 @@ const Carts = () => {
                   </svg>
                 </button>
               </div>
+                </Link>
+             
             </div>
           </div>
         </div>

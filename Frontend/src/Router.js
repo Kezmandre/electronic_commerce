@@ -10,6 +10,7 @@ import { ProtectedRoute } from "./Components/ProtectedRoute/ProtectedRoute";
 import Modal from "./Components/Modal/Modal";
 import CartPage from "./Pages/CartPage";
 import FavoritePage from "./Pages/FavoritePage";
+import CheckoutPage from "./Pages/CheckoutPage";
 const Router = () => {
   return (
     <Routes>
@@ -69,6 +70,15 @@ const Router = () => {
         element={
           <Layout>
             <FavoritePage />
+          </Layout>
+        }
+      />
+
+      <Route
+        path="/checkout"
+        element={
+          <Layout>
+            <CheckoutPage />
           </Layout>
         }
       />

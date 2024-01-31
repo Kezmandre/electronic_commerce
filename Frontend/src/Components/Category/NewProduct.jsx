@@ -8,7 +8,7 @@ import { openModalAction } from "../../Redux/actions/modal";
 
 const NewProduct = () => {
   const dispatch = useDispatch()
-  const { getProducts, modal, addToCart, addToFavorite } = useSelector(
+  const { getProducts, modal, } = useSelector(
     (state) => state
   );
   const { isModalOpen } = modal;
