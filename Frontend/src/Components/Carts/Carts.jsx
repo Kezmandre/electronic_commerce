@@ -10,6 +10,8 @@ import {
 import { DELETE_CARTS_RESET } from "../../Redux/constants/cartsConstant";
 import {MdDelete} from "react-icons/md"
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import DotSpinner from "../DotSpinner/DotSpinner";
 
 
 
@@ -17,15 +19,18 @@ import { Link } from "react-router-dom";
 const Carts = () => {
   const dispatch = useDispatch();
   const { getCarts, updateCart, deleteCart } = useSelector((state) => state);
+  const [active, setActive] = useState(null)
   const { success, error,loading} = deleteCart;
-  const { cart: qtyUpdate } = updateCart;
+  const { cart: qtyUpdate, loading:cartLoading } = updateCart;
   const { carts } = getCarts;
 
   const increaseCartHandler = (cartId) => {
+    setActive(cartId)
     dispatch(increaseCartAction(cartId));
     dispatch(getCartActions());
   };
   const decreaseCartHandler = (cartId) => {
+    setActive(cartId)
     dispatch(decreaseCartAction(cartId));
     dispatch(getCartActions());
   };
@@ -35,6 +40,7 @@ const Carts = () => {
   };
 
   useEffect(() => {
+    
     if (success) {
       toast.success("product removed from carts");
       dispatch({ type: DELETE_CARTS_RESET });
@@ -107,7 +113,10 @@ const Carts = () => {
 
                                 <div class="sm:order-1">
                                   <div class="mx-auto flex h-8 items-stretch text-gray-600">
-                                    <button
+                                    {cartLoading && active == cart._id ? (
+                                      <DotSpinner/>
+                                    ) : (
+                                      <button
                                       onClick={() =>
                                         decreaseCartHandler(cart._id)
                                       }
@@ -115,10 +124,15 @@ const Carts = () => {
                                     >
                                       -
                                     </button>
+                                    )}
+                                    
                                     <div class="flex w-full items-center justify-center bg-gray-100 px-4 text-xs uppercase transition">
                                       {cart.quantity}
                                     </div>
-                                    <button
+                                    {cartLoading && active == cart._id ? (
+                                      <DotSpinner/>
+                                    ):(
+                                      <button
                                       onClick={() =>
                                         increaseCartHandler(cart._id)
                                       }
@@ -126,6 +140,8 @@ const Carts = () => {
                                     >
                                       +
                                     </button>
+                                    )}
+                                   
                                   </div>
                                 </div>
                               </div>

@@ -7,7 +7,7 @@ import {
   getProductActions,
   singleProductActions,
 } from "../../Redux/actions/product";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Modal from "../Modal/Modal";
 
 import { openModalAction } from "../../Redux/actions/modal";
@@ -20,12 +20,14 @@ import {
 } from "../../Redux/actions/favorite";
 import { CREATE_FAVORITE_RESET } from "../../Redux/constants";
 import ToolTips from "../ToolTips/ToolTips";
+import Spinner from "../Spinner/Spinner";
 
 const Product = () => {
   const dispatch = useDispatch();
   const { getProducts, modal, addToCart, addToFavorite } = useSelector(
     (state) => state
   );
+  const [active, setActive] = useState(null);
   const { isModalOpen } = modal;
   const { cart, success: cartSuccess, error: cartError, loading } = addToCart;
   const { success: favoriteSuccess, error: favoriteError } = addToFavorite;
@@ -41,6 +43,7 @@ const Product = () => {
     dispatch(addToFavoriteAction(productId));
   };
   const addToCartHandler = (productId) => {
+    setActive(productId);
     dispatch(addToCartActions(productId));
   };
 
@@ -48,7 +51,7 @@ const Product = () => {
     if (favoriteSuccess) {
       toast.success(" Product added To Favorites");
       dispatch({ type: CREATE_FAVORITE_RESET });
-      dispatch(getAllFavoritesAction())
+      dispatch(getAllFavoritesAction());
     }
 
     if (favoriteError) {
@@ -118,12 +121,21 @@ const Product = () => {
                   onClick={() => openModalHandler(item._id)}
                 />
               </div>
-              <div
+              {loading && active == item._id ? (
+                <div
                 onClick={() => addToCartHandler(item._id)}
                 className="w-full hidden group-hover:block p-2 font-poppins text-white text-center cursor-pointer bg-black"
               >
-                Add to cart
+                Loading....
               </div>
+              ) : (
+                <div
+                  onClick={() => addToCartHandler(item._id)}
+                  className="w-full hidden group-hover:block p-2 font-poppins text-white text-center cursor-pointer bg-black"
+                >
+                  Add to cart
+                </div>
+              )}
             </div>
             <div className="mt-2 font-poppins">
               <p
@@ -133,7 +145,9 @@ const Product = () => {
                 {item.title}
               </p>
               <span className="flex justify-start items-center gap-2 ">
-                <p className="text-[#db4444] text-sm font-semibold">${item.price}</p>
+                <p className="text-[#db4444] text-sm font-semibold">
+                  ${item.price}
+                </p>
                 <p className="text-[grey] line-through text-sm">
                   ${item.discountedPrice}
                 </p>
