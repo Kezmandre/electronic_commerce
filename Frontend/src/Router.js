@@ -40,22 +40,8 @@ const Router = () => {
           </Layout>
         }
       />
-      <Route
-        path="/signUp"
-        element={
-          <Layout>
-            <SignUp />
-          </Layout>
-        }
-      />
-      <Route
-        path="/login"
-        element={
-          <Layout>
-            <LoginPage />
-          </Layout>
-        }
-      />
+      <Route path="/signUp" element={<SignUp />} />
+      <Route path="/login" element={<LoginPage />} />
       <Route path="/product/:productId" element={<Modal />} />
       <Route
         path="/cart"
