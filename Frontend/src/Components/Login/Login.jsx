@@ -57,7 +57,7 @@ const Login = () => {
         </div>
         <div className="w-[500px] h-[500px]  ml-4 ">
           <div className="w-full h-full mx-auto mt-20">
-            <p className="font-inter text-left pt-8 font-bold tracking-wider text-xl md:text-xl lg:text-2xl  pb-4">
+            <p className="font-inter text-left pt-8 font-bold tracking-wider text-2xl pb-4">
               Login into exclusive
             </p>
             <p className="font-poppins text-left text-sm pb-8">
@@ -117,7 +117,7 @@ const Login = () => {
               <p className="font-poppins cursor-pointer text-[#db4444]">
                 No account yet?{" "}
                 <Link to="/signUp">
-                <span className="underline cursor-pointer">Sign Up</span>
+                <span className="underline underline-offset-6 cursor-pointer">Sign Up</span>
                 </Link>
               </p>
             </div>

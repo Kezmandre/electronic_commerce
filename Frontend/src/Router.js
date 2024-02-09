@@ -27,17 +27,21 @@ const Router = () => {
       <Route
         path="/about"
         element={
-          <Layout>
-            <AboutPage />
-          </Layout>
+          <ProtectedRoute>
+            <Layout>
+              <AboutPage />
+            </Layout>
+          </ProtectedRoute>
         }
       />
       <Route
         path="/contact"
         element={
-          <Layout>
-            <ContactPage />
-          </Layout>
+          <ProtectedRoute>
+            <Layout>
+              <ContactPage />
+            </Layout>
+          </ProtectedRoute>
         }
       />
       <Route path="/signUp" element={<SignUp />} />

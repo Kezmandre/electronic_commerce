@@ -34,11 +34,7 @@ export const navItems = [
     name: "About",
     path: "/about",
   },
-  {
-    id: 4,
-    name: "Sign Up",
-    path: "/signUp",
-  },
+  
 ];
 
 export const aboutData = [

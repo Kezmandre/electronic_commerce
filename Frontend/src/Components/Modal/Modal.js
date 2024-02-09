@@ -20,8 +20,8 @@ const Modal = () => {
   return (
     <div className="fixed top-0 left-0 w-screen overflow-hidden z-10 bg-white">
       <motion.div 
-        initial={{x:"-100vw"}}
-        animate={{ x:0 }}
+        initial={{y:"100vw"}}
+        animate={{ y:0 }}
         transition={{duration:1 , delay:0.5, ease : 'easeInOut'}}
       className="w-9/12 h-screen relative shadow-2xl rounded-md overflow-y-scroll mx-auto bg-white mt-20 mb-8">
         <section class="py-12 sm:py-16">

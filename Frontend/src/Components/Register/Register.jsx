@@ -59,7 +59,7 @@ const Register = () => {
           <img src={signUp_img} alt="" className="w-full h-full" />
         </div>
         <div className="w-[400px] h-[500px]  my-auto ml-4">
-          <div className="w-10/12  h-full mx-auto my-2">
+          <div className="w-10/12  h-full mx-auto mt-10">
             <p className="font-inter text-left font-bold tracking-wider text-lg md:text-xl lg:text-2xl  py-4">
               Create an Account
             </p>
