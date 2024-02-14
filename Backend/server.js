@@ -7,9 +7,9 @@ import colors from "colors";
 import cors from "cors";
 import { config } from "../Backend/Config/Config.js";
 import { dbConnect } from "./Config/db.js";
-import path from "path"
+import path from "path";
 
-import userRouter from "./Routes/User.js"
+import userRouter from "./Routes/User.js";
 import productRouter from "./Routes/Product.js";
 import cartRouter from "./Routes/cart.js";
 import orderRouter from "./Routes/order.js";
@@ -17,19 +17,15 @@ import favoriteRoute from "./Routes/favorite.js";
 
 const app = express();
 
-app.use(cors())
-app.use(morgan("dev"))
-app.use(express.json())
+app.use(cors());
+app.use(morgan("dev"));
+app.use(express.json());
 
-
-app.use("/users",userRouter)
-app.use("/product",productRouter)
-app.use("/cart",cartRouter)
-app.use("/order", orderRouter )
-app.use("/favorite", favoriteRoute)
-
-
-
+app.use("/users", userRouter);
+app.use("/product", productRouter);
+app.use("/cart", cartRouter);
+app.use("/order", orderRouter);
+app.use("/favorite", favoriteRoute);
 
 const __dirname = path.resolve();
 if (process.env.NODE_ENV === "production") {
@@ -47,13 +43,12 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-
-app.all("*",(req,res)=>{
-    res.status(httpStatus.NOT_FOUND).json({
-        status:"error",
-        payload: "No defined endpoint"
-    })
-})
+app.all("*", (req, res) => {
+  res.status(httpStatus.NOT_FOUND).json({
+    status: "error",
+    payload: "No defined endpoint",
+  });
+});
 
 dbConnect()
   .then((result) => {
