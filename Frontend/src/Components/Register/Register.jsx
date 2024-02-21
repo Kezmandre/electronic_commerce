@@ -54,11 +54,11 @@ const Register = () => {
   },[success,error])
   return (
     <div className="m-0 p-0 border-box">
-      <div className="w-10/12  mx-12  flex justify-center item-center">
+      <div className="w-10/12 mx-auto lg:mx-12  flex justify-center item-center">
         <div className="flex-grow my-6 hidden lg:flex">
           <img src={signUp_img} alt="" className="w-full h-full" />
         </div>
-        <div className="w-[400px] h-[500px]  my-auto ml-4">
+        <div className="w-[400px] h-[500px]  mx-auto lg:ml-4">
           <div className="w-10/12  h-full mx-auto mt-10">
             <p className="font-inter text-left font-bold tracking-wider text-lg md:text-xl lg:text-2xl  py-4">
               Create an Account

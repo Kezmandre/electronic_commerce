@@ -10,14 +10,15 @@ import {
 } from "../constants";
 import { toast } from "react-toastify";
 
-const Base_url = process.env.NODE_ENV === "production" ? "" : "http://localhost:5000"
-export const Logout=()=>async(dispatch, state)=>{
+const Base_url =
+  process.env.NODE_ENV === "production" ? "" : "http://localhost:5000";
+export const Logout = () => async (dispatch, state) => {
   dispatch({
-    type:LOGIN_USER_RESET
-  })
-  localStorage.setItem("userInfo",null)
-  toast.success("Logged out")
-}
+    type: LOGIN_USER_RESET,
+  });
+  localStorage.setItem("userInfo", null);
+  toast.success("Logged out");
+};
 
 export const loginUserAction = (items) => async (dispatch, state) => {
   const config = {
@@ -44,7 +45,7 @@ export const loginUserAction = (items) => async (dispatch, state) => {
       payload: userInfo,
     });
 
-    localStorage.setItem("userInfo", JSON.stringify(userInfo))
+    localStorage.setItem("userInfo", JSON.stringify(userInfo));
   } catch (error) {
     let message =
       error.response && error.response.data.errors
@@ -52,17 +53,15 @@ export const loginUserAction = (items) => async (dispatch, state) => {
         : error.response && error.response.data.message
         ? error.response.data.message
         : error.message;
-
+    if (message.includes("jwt")) {
+      dispatch(Logout());
+    }
     dispatch({
       type: LOGIN_USER_ERROR,
       payload: message,
     });
-
   }
 };
-
-
-
 
 export const createUserAction = (items) => async (dispatch, state) => {
   const config = {
@@ -78,18 +77,18 @@ export const createUserAction = (items) => async (dispatch, state) => {
 
     const { data } = await axios.post(
       `${Base_url}/users`,
-      {name:items.name, email: items.email, password: items.password },
+      { name: items.name, email: items.email, password: items.password },
       config
     );
 
-    const createUserInfo = { ...data.payload};
+    const createUserInfo = { ...data.payload };
 
     dispatch({
       type: CREATE_USER_SUCCESS,
       payload: createUserInfo,
     });
 
-    localStorage.setItem("createUserInfo", JSON.stringify(createUserInfo))
+    localStorage.setItem("createUserInfo", JSON.stringify(createUserInfo));
   } catch (error) {
     let message =
       error.response && error.response.data.errors

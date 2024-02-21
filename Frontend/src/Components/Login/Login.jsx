@@ -38,29 +38,29 @@ const Login = () => {
       toast.success(`welcome back ${user.name}`);
       setTimeout(() => {
         navigate("/");
-      }, 5000);
+      }, 3000);
     }
 
     if (error) {
       toast.error(`${error}`);
       setTimeout(() => {
         dispatch({ type: LOGIN_USER_RESET });
-      });
+      },5000);
     }
   }, [success, error]);
 
   return (
     <div className="m-0 p-0 border-box">
-      <div className="w-10/12  mx-12 flex justify-center item-center">
+      <div className="w-10/12 mx-auto lg:mx-12 flex justify-center item-center">
         <div className="flex-grow my-6 hidden lg:flex">
           <img src={signUp_img} alt="" className="w-full h-full" />
         </div>
-        <div className="w-[500px] h-[500px]  ml-4 ">
-          <div className="w-full h-full mx-auto mt-20">
-            <p className="font-inter text-left pt-8 font-bold tracking-wider text-2xl pb-4">
+        <div className="w-[500px] h-[500px] mx-auto lg:ml-4">
+          <div className="w-full h-full mt-20">
+            <p className="font-inter text-start pt-8 font-bold tracking-wider text-2xl pb-4">
               Login into exclusive
             </p>
-            <p className="font-poppins text-left text-sm pb-8">
+            <p className="font-poppins text-start text-sm pb-8">
               Enter your details below
             </p>
             <div className=" w-full mb-4 ">
