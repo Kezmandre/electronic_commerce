@@ -32,7 +32,7 @@ const Home = () => {
       <Reveal>
         <div className="w-5/6 mx-auto mt-4 mb-14 cursor-pointer gap-6 flex justify-between">
           <div className="hidden lg:flex w-[200px] h-[280px] font-poppins border-r-2">
-            <div className="w-5/6 mx-auto">
+             <div className="w-5/6 mx-auto">
               <div className="flex items-center justify-between mb-2">
                 <p>Women's Fashion</p>
                 <FaAngleRight />
@@ -50,7 +50,7 @@ const Home = () => {
                 <li className="pb-2">Groceries & Pet</li>
                 <li className="pb-2">Health & Beauty</li>
               </ul>
-            </div>
+            </div> 
           </div>
           <div className="w-full mx-auto lg:grow h-[290px] bg-black">
             <div className="flex bg-black w-full h-full">

@@ -49,7 +49,7 @@ const Navigation = () => {
           })}
         </ul>
         <div className="flex justify-center items-center gap-4">
-          <div className=" hidden lg:flex justify-center rounded-md bg-searchBg items-center border-1 h-10 w-[300px] border-black">
+          <div className=" hidden lg:flex justify-center rounded-md bg-searchBg items-center border-1 ml-8 h-10 w-[300px] border-black">
             <input
               type="text"
               className="w-full p-2 text-poppins bg-searchBg outline-none"
@@ -82,7 +82,7 @@ const Navigation = () => {
                 </div>
               )}
             </div>
-          </Link>
+          // </Link>
           <div
             onClick={logoutHandler}
             className="hidden lg:flex bg-red-600 text-white rounded-md shadow-md hover:bg-red-500 p-1 cursor-pointer mr-10"

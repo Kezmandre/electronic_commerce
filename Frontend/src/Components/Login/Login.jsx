@@ -51,12 +51,12 @@ const Login = () => {
 
   return (
     <div className="m-0 p-0 border-box">
-      <div className="w-10/12 mx-auto lg:mx-12 flex justify-center item-center">
-        <div className="flex-grow my-6 hidden lg:flex">
+      <div className="flex justify-center item-center">
+        <div className="w-[50%] h-[100vh] hidden lg:flex">
           <img src={signUp_img} alt="" className="w-full h-full" />
         </div>
-        <div className="w-[500px] h-[500px] mx-auto lg:ml-4">
-          <div className="w-full h-full mt-20">
+        <div className="w-[50%] h-[500px] mx-auto lg:ml-4">
+          <div className="w-[400px] px-4 py-4 pb-8 mx-auto shadow-xl border-2 border-red-100 rounded-md h-auto mt-20">
             <p className="font-inter text-start pt-8 font-bold tracking-wider text-2xl pb-4">
               Login into exclusive
             </p>
@@ -105,7 +105,7 @@ const Login = () => {
                 ) : (
                   <button
                     onClick={LoginHandler}
-                    className="w-full hover:bg-red-300 p-2 bg-[#db4444]"
+                    className="w-full hover:bg-red-300 rounded-md p-2 bg-[#db4444]"
                   >
                     <p className="text-white text-center font-poppins">
                       Log in
@@ -114,7 +114,7 @@ const Login = () => {
                 )}
               </div>
 
-              <p className="font-poppins cursor-pointer text-[#db4444]">
+              <p className="font-poppins cursor-pointer text-xs text-[#db4444]">
                 No account yet?{" "}
                 <Link to="/signUp">
                 <span className="underline underline-offset-6 cursor-pointer">Sign Up</span>

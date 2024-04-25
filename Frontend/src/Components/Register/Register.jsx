@@ -54,12 +54,12 @@ const Register = () => {
   },[success,error])
   return (
     <div className="m-0 p-0 border-box">
-      <div className="w-10/12 mx-auto lg:mx-12  flex justify-center item-center">
-        <div className="flex-grow my-6 hidden lg:flex">
+      <div className="flex justify-center item-center">
+        <div className="w-[50%] h-[100vh] hidden lg:flex">
           <img src={signUp_img} alt="" className="w-full h-full" />
         </div>
-        <div className="w-[400px] h-[500px]  mx-auto lg:ml-4">
-          <div className="w-10/12  h-full mx-auto mt-10">
+        <div className="w-[50%] h-[500px]  mx-auto lg:ml-4">
+          <div className="w-[400px] px-4 py-4 pb-8 mx-auto shadow-xl border-2 border-red-100 rounded-md h-auto mt-10">
             <p className="font-inter text-left font-bold tracking-wider text-lg md:text-xl lg:text-2xl  py-4">
               Create an Account
             </p>
@@ -99,7 +99,7 @@ const Register = () => {
             {loading ? (
               <Spinner/>
             ) : (
-              <button onClick={createUserHandler} className="w-full bg-[#db4444] hover:bg-red-300  rounded-md mb-2 p-2">
+              <button onClick={createUserHandler} className="w-full bg-[#db4444]  rounded-md mb-2 p-2">
               <p className="text-center font-poppins text-white">
                 Create an Account
               </p>
