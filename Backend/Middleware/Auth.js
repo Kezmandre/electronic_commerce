@@ -31,7 +31,7 @@ export const userVerification = async (req, res, next) => {
     req.user = user;
     next();
   } catch (error) {
-    res.status(BAD_REQUEST).json({
+    res.status(httpStatus.BAD_REQUEST).json({
       status:"error",
       message:error.message
     })

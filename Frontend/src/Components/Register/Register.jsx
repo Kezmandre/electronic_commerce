@@ -58,8 +58,8 @@ const Register = () => {
         <div className="w-[50%] h-[100vh] hidden lg:flex">
           <img src={signUp_img} alt="" className="w-full h-full" />
         </div>
-        <div className="w-[50%] h-[500px]  mx-auto lg:ml-4">
-          <div className="w-[400px] px-4 py-4 pb-8 mx-auto shadow-xl border-2 border-red-100 rounded-md h-auto mt-10">
+        <div className="lg:w-[50%] lg:h-[500px] mx-auto lg:ml-4">
+          <div className="w-[400px] px-4 py-4 pb-8 mx-auto shadow-xl border-2 border-red-100 rounded-md h-auto my-20">
             <p className="font-inter text-left font-bold tracking-wider text-lg md:text-xl lg:text-2xl  py-4">
               Create an Account
             </p>

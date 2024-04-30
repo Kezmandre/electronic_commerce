@@ -82,7 +82,7 @@ const Navigation = () => {
                 </div>
               )}
             </div>
-          // </Link>
+           </Link>
           <div
             onClick={logoutHandler}
             className="hidden lg:flex bg-red-600 text-white rounded-md shadow-md hover:bg-red-500 p-1 cursor-pointer mr-10"
